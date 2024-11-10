@@ -41,12 +41,12 @@ DATA_STACK_DESC:    dd DESC_DATA_LOW_32
 ; VIDEO段描述符
 VIDEO_DESC:         dd DESC_VIDEO_LOW_32   ;dd 0x80000007
                     dd DESC_VIDEO_HIGH_32
+; 预留60个描述符的空位
+times 60 dq 0
 ; 计算GDT大小
 GDT_SIZE equ $ - GDT_BASE
 ; 计算段界限
 GDT_LIMIT equ GDT_SIZE - 1
-; 预留60个描述符的空位
-times 60 dq 0
 ; 选择子定义
 SELECTOR_CODE    equ (0x0001 << 3) + TI_GDT + RPL0
 SELECTOR_DATA    equ (0x0002 << 3) + TI_GDT + RPL0
