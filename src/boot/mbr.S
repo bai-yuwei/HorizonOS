@@ -27,7 +27,7 @@ init_segments:
     ; 将代码段的地址赋值给ss，ds是栈段寄存器
     mov ss, ax
     ; 将代码段的地址赋值给fs，fs是标志段寄存器，是80386起新增加的两个辅助段寄存器之一，指向当前活动线程的TEB结构
-    ; 上述代码用cs寄存器的值初始化其他寄存器，此时cs寄存器的值为0xf000，所以上述代码实际上将ds、es、ss、fs均初始化为0xf000。
+    ; 上述代码用cs寄存器的值初始化其他寄存器，此时cs寄存器的值为0，所以上述代码实际上将ds、es、ss、fs均初始化为0。
     mov fs, ax
     ; sp为栈段偏移地址，将栈偏移地址存入bx
     mov bx, sp
@@ -91,9 +91,11 @@ load_loader_img:
 read_disk:
     ; esi/edi为源/目标索引寄存器，用于存储指向源数据/目标数据的指针或索引。
     ; eax为累加器，是加法乘法指令的
-    mov esi, eax
+    ; 此句是备份eax
+    mov esi,eax
     ; di为目的变址寄存器
-    mov di, cx
+    ; 此句备份cx
+    mov di,cx
     ; 第一步，设置要读取的扇区数
     ; 设置要读取的磁盘扇区数目，在loader中已经将cx中存入磁盘数目
     mov dx, 0x01f2

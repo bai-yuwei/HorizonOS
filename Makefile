@@ -72,6 +72,14 @@ debug :
 	@echo "$(output_folder_detect)"
 	@echo "$(output_folder)$(mbr_objs)"
 
+help :
+	@echo "mbr_build"
+	@echo "loader_build"
+	@echo "kernel_build"
+	@echo "debug"
+	@echo "clean"
+
 clean :
 	@ rm -rf objs *.o
-.PHOHY : mbr_build loader_build kernel_build debug clean
+
+.PHOHY : mbr_build loader_build kernel_build debug clean help

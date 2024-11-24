@@ -320,6 +320,7 @@ setup_page:
         add eax, PAGE_SIZE
         add edx, 4
         loop .create_pte
+    call enable_page
     ret
 
 ; 使能页表，就是将描述符的地址和偏移量写入内存 gdt_ptr，然后用新地址（虚拟地址）重新加载

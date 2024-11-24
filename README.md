@@ -17,6 +17,10 @@
         - [操作显卡显示](#操作显卡显示)
       - [loader](#loader)
         - [进入保护模式](#进入保护模式)
+        - [内存分页](#内存分页)
+          - [创建页表](#创建页表)
+          - [使能页表](#使能页表)
+    - [kernel](#kernel)
 
 ## 项目说明
 <p>本项目从零开始构建一个操作系统。
@@ -288,5 +292,102 @@ setup_protection_mode:
 A20地址线是控制CPU访问高出1MB地址空间的地址时选择地址回绕还是访问真实物理内存的开关。在实模式下，A20地址线是关闭的，当CPU访问超出1MB空间的地址时会地址回绕；在保护模式下A20地址线应该被开启，因为此时不再直接访问物理地址。打开A20地址线的方法很简单，就是将端口0x92的第一位置1即可。
 GDT是用来记录段描述符的表。在保护模式下，段寄存器中记录了GDT中的某一个描述符的索引，描述符中记录了段基址、段界限和段属性，通过GDT再映射到实际的物理地址。
 控制器寄存器CR0的第0位是保护模式的开关，置1则开启保护模式。
+通过远跳刷新流水线。当开启保护模式后，段描述符缓冲寄存器并不会更新，仍为实模式下的值。且此时当前代码运行在保护模式，而上一行代码运行才实模式，导致流水线工作异常。当CPU执行jmp指令时，会清空已经送上流水线的指令，且会改变段寄存器的值，因此远跳可以解决上述两个问题。
+##### 内存分页
+通过建立页表来实现内存分页。为减小页表本身占用内存的空间，建立二级页表实现内存分页。无论是几级页表，标准页的尺寸都是4KB，每一个页表中含1024项，因此一个页表可管理4MB的内存空间。没一个页目录表含1024项，因此可管理1024个页表，则可管理4GB的地址空间。
+因此，二级页表将32位虚拟地址区分为高10位，中间10位和低12位，高10位为页表的索引，可定位页目录表中的一个页目录项PDE，PDE中存储了页表的物理地址。中间10为作为物理页的索引，用于定位页表项PTE，页表项中存储了物理页地址，可找到要访问的物理页物理地址。低12位则可访问一个物理页内包含的4K地址空间。
+页表实际上就是一段连续的物理空间，其中存储了PDE或PTE，每一个PDE或PTE中存储的物理空间仅需要20位，因此低12位用于记录页表的读取属性。
+###### 创建页表
+```
+setup_page:
+    push PAGE_SIZE
+    push PAGE_DIR_TABLE_ADDR
+    call clear_memory
+    add esp, 8
+    ; 创建 pde
+    .create_pde:
+        ; 在内存中，每一个 pde/pte 为 4B 。物理空间共 4G ，每一个 pte 指向 4K 的物理地址，因此需要 1M 个 pte 。
+        ; 这 1M 个 pte 可以直接放在一张页表中，或者拆分为 1K 个页表，每个页表存放 1K 个页表项。
+        ; 每个 pde 指向一个页表，因此使用二级页表的话共有 1K 个 pde。
+        ; 在内存中，页目录表和页表的布局是直接连续存放的，先存放页目录表，再存放页表（页目录表为低地址，页表为高地址）。
+        ; 此时 eax 存放的是页目录表的物理地址
+        mov eax, PAGE_DIR_PHYISCAL_ADDR
+        or eax, PG_US_U | PG_RW_W | PG_P
+        ; 将第一个 pde 存放在页目录表的首地址
+        mov [PAGE_DIR_TABLE_ADDR + 0], eax
+        ; 将页目录表的第 0 项和第 768 项都指向同一个页表，这是因为操作系统会放在 3GB-4GB 的虚拟空间内。
+        mov [PAGE_DIR_TABLE_ADDR + 768 * 4], eax
+        ; 最后一个页目录项指向页目录表自己的地址
+        sub eax, 0x1000
+        mov [PAGE_DIR_TABLE_ADDR + 4092], eax
 
+        ; 创建操作系统的其他 pde （虚拟地址中的 3GB-4GB 的虚拟空间）
+        mov eax, PAGE_DIR_TABLE_ADDR + PAGE_SIZE
+        or eax, PG_US_U | PG_RW_W | PG_P
+
+        ; ecx 中存储了循环次数（第一个地址已经写入值了）
+        mov eax, PAGE_DIR_PHYISCAL_ADDR
+        add eax, 0x2000
+        mov ecx, 254
+        mov edx, PAGE_DIR_TABLE_ADDR + 769 * 4
+        ; 创建内核（高1GB）的页目录表
+        .create_kernel_pde:
+            mov [edx], eax
+            add eax, PAGE_SIZE
+            add edx, 4
+            loop .create_kernel_pde
+    ; 创建页表
+    mov eax, 0
+    or eax, PG_US_U | PG_RW_W | PG_P
+    mov ecx, 256
+    mov edx, PAGE_DIR_PHYISCAL_ADDR
+    .create_pte:
+        mov [edx], eax
+        add eax, PAGE_SIZE
+        add edx, 4
+        loop .create_pte
+    ret
+```
+创建页表，就是在一段连续的内存中写入PDE或PTE。页目录表的第0项和第768项需要指向同一个地址，因为高1GB的地址空间是系统空间，低3GB的地址空间是用户空间，这样可以保证每一个用户进程在访问高1GB的地址空间时访问相同的物理地址。同时操作系统内核放在低端1MB的物理空间，但虚拟地址是高3GB地址空间，因此需要将两个地址对应起来。页目录表放在低1M地址空间处，物理内存布局如图：
+![alt text](image-6.png)
+页目录表的最后一项需要指向页目录表自己的地址，这实际上也是最后一项页表的地址。
+###### 使能页表
+```
+; 使能页表，就是将描述符的地址和偏移量写入内存 gdt_ptr，然后用新地址（虚拟地址）重新加载
+; 说人话，就是给原来的 gdt 搬个家，从物理地址搬到新的物理地址（高 1GB 的空间），然后通过页表去读写
+enable_page:
+    ; 存储带原来 gdt 所在的位置
+    sgdt [gdt_ptr]
+    ; 改变 gdt 描述符中视频段描述符的位置
+    mov ebx, [gdt_ptr + 2]
+    or dword [ebx + 0x18 + 4], 0xC0000000
+
+    ; move gdt to > 0xC0000000
+    add dword [gdt_ptr + 2], 0xC0000000
+
+    ; move stack to 0xC0000000
+    mov eax, [esp]
+    add esp, 0xc0000000
+    mov [esp], eax
+
+    ; 把页目录的地址给 cr3，这是建立页表后的第二步
+    mov eax, PAGE_DIR_TABLE_ADDR
+    mov cr3, eax
+
+    ; enable paging on cr0 register，这是建立页表后的第三步
+    mov eax, cr0
+    or eax, 0x80000000
+    mov cr0, eax
+
+    ; load gdt again - gdt has been moved to > 0xC0000000
+    lgdt [gdt_ptr]
+
+    ; refresh video segment selector cache
+    mov ax, SELECTOR_VIDEO
+    mov gs, ax
+
+    ret
+```
+使能页表后，可在虚拟机内查看建立的页表映射关系如下，坐便列出的是32位虚拟地址范围，右边列出的是对应的物理地址。
 ![alt text](image-3.png)
+### kernel
