@@ -1,7 +1,7 @@
 ################################################################################
 # @file    config.mk
-# @brief   This is a brief description of file config.mk.
-# @details This is the detail description.
+# @brief   通用配置makefile.
+# @details 定义工程根目录、中间件目录和其他编译选项.
 # @author  ywBai <yw_bai@outlook.com>
 # @date    2025年02月05日 (created)
 # @version 0.0.1
