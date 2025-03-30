@@ -32,7 +32,7 @@ export ROOT_DIR				:= $(shell if [ -d ../Build ]; then echo ".."; else echo "../
 export BIN_DIR				:= $(ROOT_DIR)/Bin
 
 # 编译中间件路径（相对 makefile 文件的路径）
-export OBJ_DIR				:= objs
+export OBJ_DIR_BASE		    := Objs
 export PLATFORMS_DIR		:= Platforms
 export TARGETS_DIR			:= Targets
 # 配置 make 时是否在每一行前显示当前编译的目标信息：TRUE/FALSE

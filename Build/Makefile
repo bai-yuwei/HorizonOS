@@ -48,13 +48,13 @@ else
 	export FIND := find
 	export PWD := $(shell pwd)
 	uname_a := $(shell uname -a)
-	ifneq ($(findstring Microsoft, $(uname_a)),)
+ifneq ($(findstring Microsoft, $(uname_a)),)
 		export OS := WSL
-	else ifneq ($(findstring Linux, $(uname_a)),)
+else ifneq ($(findstring Linux, $(uname_a)),)
 		export OS := Linux
-	else ifneq ($(findstring Darwin, $(uname_a)),)
+else ifneq ($(findstring Darwin, $(uname_a)),)
 		export OS := MacOS
-	endif
+endif
 endif
 include config.mk
 

@@ -35,14 +35,15 @@ else
 	cross_suffix	:=
 endif
 
-export NASM		= $(cross_prefix)nasm$(cross_suffix)
 export CC		= $(cross_prefix)gcc$(cross_suffix)
 export LINK		= $(cross_prefix)gcc$(cross_suffix)
 # ar: Archive 用于创建、修改和管理 .a 文件   
 # 示例： ar rcs libmath.a add.o sub.o mul.o
 export AR       = $(cross_prefix)ar$(cross_prefix)
 # as: 处理包含 #include #define #ifdef 等预处理命令时的汇编文件，或不是默认 .s 后缀的汇编文件
-export AS		= $(cross_prefix)size$(cross_suffix)
+export AS		= $(CC) -x assembler-with-cpp
+export GDB		= $(cross_prefix)gdb$(cross_suffix)
+export SIZE		= $(cross_prefix)size$(cross_suffix)
 export OBJCOPY	= $(cross_prefix)objcopy$(cross_suffix)
 export OBJDUMP	= $(cross_prefix)objdump$(cross_suffix)
 export BIN_CMD	= $(OBJCOPY) -O binary

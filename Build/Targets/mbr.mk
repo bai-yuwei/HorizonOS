@@ -1,9 +1,9 @@
 ################################################################################
-# @file    boot.mk
+# @file    mbr.mk
 # @brief   编译 mbr 的配置.
 # @details 
 # @author  ywBai <yw_bai@outlook.com>
-# @date    2025年03月23日 (created)
+# @date    2025年03月30日 (created)
 # @version 0.0.1
 # @par Copyright (C):
 #          Bai, yuwei. All Rights Reserved.
@@ -21,7 +21,7 @@
 # 5. Else:
 #      None.
 # @par Modification:
-# -# Date          : 2025年03月23日;
+# -# Date          : 2025年03月30日;
 # Revision         : 0.0.1;
 # Author           : ywBai;
 # Contents         :
@@ -36,7 +36,7 @@
 # 工程名
 PRODUCT				:= boot
 # 要生成的目标文件名
-TARGET_NAME			:= loader
+TARGET_NAME			:= mbr
 # 要生成的目标类型（后缀名），可以写多个，以空格隔开，支持bin a out so
 TARGET_TYPE			:= bin
 # 硬件平台，支持 Build/Platforms 中包含的平台
@@ -71,9 +71,9 @@ LIB_DIRS			:=
 # 头文件目录（要搜索的头文件最上层目录，若有多个，以空格隔开）
 INC_DIRS			:= $(PRODUCT)
 # 目标文件存放目录
-RELEASE_DIR			:= Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)
+RELEASE_DIR			:= Bin/$(PRODUCT)/$(MODE)
 # 编译中间文件存放目录
-OBJ_DIR				:= $(OBJ_DIR_BASE)/$(PRODUCT)/$(TARGET_NAME)/$(MODE)
+OBJ_DIR				:= $(OBJ_DIR_BASE)/$(PRODUCT)/$(MODE)
 
 # 若生成目标是静态库，则还需要配置以下内容
 # 对外头文件所在目录
