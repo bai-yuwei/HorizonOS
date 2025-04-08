@@ -1,7 +1,7 @@
 ################################################################################
 # @file    config.mk
-# @brief   This is a brief description of file config.mk.
-# @details This is the detail description.
+# @brief   通用配置makefile.
+# @details 定义工程根目录、中间件目录和其他编译选项.
 # @author  ywBai <yw_bai@outlook.com>
 # @date    2025年02月05日 (created)
 # @version 0.0.1
@@ -32,7 +32,7 @@ export ROOT_DIR				:= $(shell if [ -d ../Build ]; then echo ".."; else echo "../
 export BIN_DIR				:= $(ROOT_DIR)/Bin
 
 # 编译中间件路径（相对 makefile 文件的路径）
-export OBJ_DIR				:= objs
+export OBJ_DIR_BASE		    := Objs
 export PLATFORMS_DIR		:= Platforms
 export TARGETS_DIR			:= Targets
 # 配置 make 时是否在每一行前显示当前编译的目标信息：TRUE/FALSE
