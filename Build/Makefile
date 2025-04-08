@@ -100,17 +100,17 @@ endif
 
 
 clean :
-ifneq ($(OBJ_DIR),)
-	$(RM) $(OBJ_DIR)
-else
-	$(error OBJ_DIR not configured...)
-endif
 ifneq ($(BIN_DIR),)
 	$(RM) $(BIN_DIR)/*
 else
 	$(error BIN_DIR not configured...)
 endif
 	@echo done...
+ifneq ($(OBJ_DIR_BASE),)
+	$(RM) $(OBJ_DIR_BASE)
+else
+	$(error OBJ_DIR_BASE not configured...)
+endif
 
 cleanbin :
 ifneq ($(BIN_DIR),)
