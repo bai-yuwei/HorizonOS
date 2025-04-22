@@ -280,6 +280,7 @@ setup_page:
 
   ; create page directory
 .create_pde:
+  ; 这里创建了用户空间中第一个pde和内核空间的所有pde，用户空间的第一个pde映射到初始的4MB内存
   ; first pde
   mov eax, PAGE_DIR_PHYISCAL_ADDR - PAGE_SIZE
   or eax, PG_US_U | PG_RW_W | PG_P
