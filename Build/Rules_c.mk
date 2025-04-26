@@ -1,5 +1,5 @@
 ################################################################################
-# @file    Rules.mk
+# @file    Rules_c.mk
 # @brief   规则makefile.
 # @details 将配置定义实际配置为编译器指令.
 # @author  ywBai <yw_bai@outlook.com>
@@ -40,6 +40,7 @@ ROOT_DIR	:= $(PWD)/$(ROOT_DIR)
 endif
 
 ifneq ($(PLATFORM).mk, $(notdir $(wildcard $(PLATFORMS_DIR)/$(PLATFORM).mk)))
+	@echo $(PLATFORM)
 	$(error platform $(PLATFORM) not supported...)
 endif
 
@@ -68,7 +69,7 @@ ifneq ($(LD_FILE),)
 LD_FILE				:= $(addprefix $(ROOT_DIR)/, $(LD_FILE))
 endif
 
-TARGET_BASENAME		:= $(RELEASE_DIR)/(TARGET_NAME)
+TARGET_BASENAME		:= $(RELEASE_DIR)/$(TARGET_NAME)
 TARGETS				:= $(addprefix $(TARGET_BASENAME)., $(TARGET_TYPE))
 
 # 查找源文件及头文件目录，默认排除 .svn 路径
@@ -116,15 +117,15 @@ echo_info:
 
 # 编译和链接
 $(TARGET_BASENAME).elf : $(relink) $(OBJ_FILES) $(LINK_FILE)
-	@$(ECHO) "linking..."
-	@$(ECHO) "generating $(notdir $@)..."
+	@echo "linking..."
+	@echo "generating $(notdir $@)..."
 	@mkdir -p $(RELEASE_DIR)
 	@$(CC) -o $@ $(OBJ_FILES) $(LFLAGS)
 
 # 生成 srec
 $(TARGET_BASENAME).srec : $(TARGET_BASENAME).elf
 ifneq ($(SREC_CMD),)
-	@$(ECHO) "generating $(notdir $@)..."
+	@echo "generating $(notdir $@)..."
 	@$(SREC_CMD) $< $@
 else
 	$(error can't generate srec, SREC_CMD not supported...)
@@ -133,7 +134,7 @@ endif
 # 生成 hex
 $(TARGET_BASENAME).hex : $(TARGET_BASENAME).elf
 ifneq ($(HEX_CMD),)
-	@$(ECHO) "generating $(notdir $@)..."
+	@echo "generating $(notdir $@)..."
 	@$(HEX_CMD) $< $@
 else
 	$(error can't generate hex, HEX_CMD not supported...)
@@ -142,7 +143,7 @@ endif
 # 生成 bin
 $(TARGET_BASENAME).bin : $(TARGET_BASENAME).elf
 ifneq ($(BIN_CMD),)
-	@$(ECHO) "generating $(notdir $@)..."
+	@echo "generating $(notdir $@)..."
 	@$(HEX_CMD) $< $@
 else
 	$(error can't generate hex, HEX_CMD not supported...)
@@ -157,7 +158,7 @@ ifneq ($(copy_inc_dir),FALSE)
 	@$(RM) $(LIB_INC_RELEASE_DIR)/*
 	@$(CP) -R `$(FIND) $(LIB_INC_SRC_DIR) -maxdepth 1 !  -path "*/.svn" | sed 1d ` $(LIB_INC_RELEASE_DIR)
 else
-    @$(ECHO) "skip copy include dir..."
+    @echo "skip copy include dir..."
 endif
 	@(ECHO) "generating $(notdir $@)..."
 	@$(AR) -rcsD $@ $(OBJ_FILES)
@@ -165,30 +166,9 @@ endif
 # 编译.c
 $(OBJ_DIR)/%.c.o : $(ROOT_DIR)/%.c
 	@mkdir -p $(@D)
-	@$(ECHO) "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%. $<)"
-	@#$(CC) -I$(dir $<) $(CFLAGS) -MMD -MF"$(@:%.o=%.d)" -MT"$@" -c -o $@.i $<
+	@echo "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%, $<)"
+# @$(CC) -I$(dir $<) $(CFLAGS) -MMD -MF"$(@:%.o=%.d)" -MT"$@" -c -o $@.i $<
 	@$(CC) -I$(dir $<) $(CFLAGS) -MMD -MF"$(@:%.o=%.d)" -MT"$@" -c -o $@ $<
-
-# 编译.s
-$(OBJ_DIR)/%.s.o : $(ROOT_DIR)/%.s
-	@mkdir -p $(@D)
-	@$(ECHO) "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%, $<)"
-	@$(AS) $(AFLAGS) -c -o $@ $<
-
-# 编译.S
-$(OBJ_DIR)/%.S.o : $(ROOT_DIR)/%.S
-	@echo "!!!!!$(INC_DIRS)"
-	@mkdir -p $(@D)
-	@echo "$(AFLAGS)"
-	@echo "nasm -o-I../boot $@ $<"
-	@$(ECHO) "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%, $<")
-	@nasm -I../boot $< -o $@
-#@$(AS) $(AFLAGS) -c -o $@ $<
-
-$(OBJ_DIR)/%.s.o : $(ROOT_DIR)/%.s
-	@mkdir -p $(@D)
-	@$(ECHO) "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%, $<)"
-	@$(AS) $(AFLAGS) -c -o $@ $<
 
 clean:
 ifneq ($(LIB_INC_RELEASE_DIR),)
