@@ -1,5 +1,5 @@
 ################################################################################
-# @file    BOCHS.mk
+# @file    BOCHS_C.mk
 # @brief   执行编译makefile.
 # @details This is the detail description.
 # @author  ywBai <yw_bai@outlook.com>
@@ -54,9 +54,9 @@ export SREC_CMD	= $(OBJCOPY) -O srec
 export LIB_SUPPORT ?= LIB
 
 # 编译参数
-export CFLAGS +=
+export CFLAGS += -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -no-pie -fno-pic -c 
 
 # 链接参数
-export LFIAGS +=
+export LFLAGS += -m32 -shared
 
 
