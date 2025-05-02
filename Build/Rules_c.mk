@@ -71,11 +71,10 @@ endif
 
 TARGET_BASENAME		:= $(RELEASE_DIR)/$(TARGET_NAME)
 TARGETS				:= $(addprefix $(TARGET_BASENAME)., $(TARGET_TYPE))
-
 # 查找源文件及头文件目录，默认排除 .svn 路径
-SRC_FILES			:= $(shell $(FIND) $(TOP_SRC_DIRS) ! -path "*/.svn/*" $(patsubst %,! -path "%/*", $(EXCLUDE_DIRS)) -iname "*.[cs]" -type f)
+SRC_FILES			:= $(shell $(FIND) $(TOP_SRC_DIRS) $(patsubst %,! -path "%/*", $(EXCLUDE_DIRS)) -iname "*.[cs]" -type f)
 SRC_FILES			:= $(sort $(SRC_FILES))
-INC_DIRS			:= $(shell $(FIND) $(INC_DIRS) ! -path "*/.svn" ! -path "*/.svn/*" $(patsubst %,! -path "%" ! -path "%/*",$(EXCLUDE_DIRS)) -type d)
+INC_DIRS			:= $(shell $(FIND) $(INC_DIRS) $(patsubst %,! -path "%" ! -path "%/*",$(EXCLUDE_DIRS)) -type d)
 INC_DIRS			:= $(sort $(INC_DIRS))
 
 ifeq ($(SRC_FILES),)
@@ -98,8 +97,8 @@ AFLAGS += -$(D_OPTIMIZATION)
 AFLAGS += -$(D_DEBUG_LEVEL)
 endif
 
-CFLAGS += $(INC_DIRS %= -I%)
-AFLAGS += $(INC_DIRS %= -I%)
+CFLAGS += $(patsubst %, -I%, $(INC_DIRS))
+AFLAGS += $(patsubst %, -I%, $(INC_DIRS))
 
 
 ################################################################################################################
@@ -119,6 +118,7 @@ echo_info:
 $(TARGET_BASENAME).elf : $(relink) $(OBJ_FILES) $(LINK_FILE)
 	@echo "linking..."
 	@echo "generating $(notdir $@)..."
+	@echo "!!!!!!!!!!!!!!!!!!!!!!$(LFLAGS)"
 	@mkdir -p $(RELEASE_DIR)
 	@$(CC) -o $@ $(OBJ_FILES) $(LFLAGS)
 

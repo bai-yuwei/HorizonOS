@@ -1,5 +1,4 @@
 ENTRY(main)
-
 SECTIONS
 {
     .text 0xC0800000:
