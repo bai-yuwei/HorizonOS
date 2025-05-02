@@ -57,6 +57,6 @@ export LIB_SUPPORT ?= LIB
 export CFLAGS += -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -no-pie -fno-pic -c 
 
 # 链接参数
-export LFLAGS += -m32 -shared
+export LFLAGS += -m32 -shared -T $(LD_FILE)
 
 

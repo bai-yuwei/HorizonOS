@@ -81,7 +81,7 @@ LIB_INC_RELEASE_DIR	:=
 
 # 若生成目标是可执行文件，还需要配置以下内容
 # 链接文件相对路径及文件名
-LD_FILE				:= ../../$(TARGET_NAME)/link.ld
+LD_FILE				:= $(TARGET_NAME)/link.ld
 
 include Rules_c.mk
 
