@@ -38,7 +38,7 @@ PRODUCT				:= kernel
 # 要生成的目标文件名
 TARGET_NAME			:= kernel
 # 要生成的目标类型（后缀名），可以写多个，以空格隔开，支持bin a out so
-TARGET_TYPE			:= bin
+TARGET_TYPE			:= bin sym
 # 硬件平台，支持 Build/Platforms 中包含的平台
 PLATFORM			:= BOCHS_C
 # Debug模式时的优化等级和调试等级

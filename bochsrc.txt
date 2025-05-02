@@ -12,8 +12,10 @@ ata0-master: type=disk, path="scroll.img", mode=flat, cylinders=6, heads=16, spt
 
 log: bochsout.txt
 
+gdbstub: enabled=1, port=1234, text_base=0, data_base=0, bss_base=0
 magic_break: enabled = 1
 mouse: enabled=0
-keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
+#keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map
+display_library:sdl
 clock: sync=realtime
 cpu: ips=1000000
