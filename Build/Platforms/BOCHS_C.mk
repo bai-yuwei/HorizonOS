@@ -49,6 +49,7 @@ export OBJDUMP	= $(cross_prefix)objdump$(cross_suffix)
 export BIN_CMD	= $(OBJCOPY) -O binary
 export HEX_CMD	= $(OBJCOPY) -O ihex
 export SREC_CMD	= $(OBJCOPY) -O srec
+export SYM_CMD	= $(OBJCOPY) --only-keep-debug
 
 # 编译 elf 所需的支持库
 export LIB_SUPPORT ?= LIB

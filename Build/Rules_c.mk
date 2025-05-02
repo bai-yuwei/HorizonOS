@@ -118,7 +118,6 @@ echo_info:
 $(TARGET_BASENAME).elf : $(relink) $(OBJ_FILES) $(LINK_FILE)
 	@echo "linking..."
 	@echo "generating $(notdir $@)..."
-	@echo "!!!!!!!!!!!!!!!!!!!!!!$(LFLAGS)"
 	@mkdir -p $(RELEASE_DIR)
 	@$(CC) -o $@ $(OBJ_FILES) $(LFLAGS)
 
@@ -147,6 +146,15 @@ ifneq ($(BIN_CMD),)
 	@$(HEX_CMD) $< $@
 else
 	$(error can't generate hex, HEX_CMD not supported...)
+endif
+
+# 生成 sym
+$(TARGET_BASENAME).sym : $(TARGET_BASENAME).elf
+ifneq ($(SYM_CMD),)
+	@echo "generating $(notdir $@)..."
+	@$(SYM_CMD) $< $@
+else
+	$(error can't generate sym, SYM_CMD not supported...)
 endif
 
 # 生成 .a
