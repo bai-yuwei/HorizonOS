@@ -474,7 +474,7 @@ do_load_kernel:
 
 .load_each_segment:
   cmp byte [ebx + 0], 0
-  je .next_prgoram_header
+  je .next_program_header
 
   push dword [ebx + 16]  ; p_filesz
   mov eax, [ebx + 4]     ; p_offset
@@ -484,7 +484,7 @@ do_load_kernel:
   call memcpy
   add esp, 12
 
-.next_prgoram_header:
+.next_program_header:
   add ebx, edx
   loop .load_each_segment
 

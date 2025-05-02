@@ -53,7 +53,7 @@ MODE				?= Debug
 # 指定额外编译参数
 CFLAGS				+=
 # 指定额外链接参数
-LFLAGS				+=
+LFLAGS				+= -Wl,-Map=../Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)/$(TARGET_NAME).map
 
 ###############################################################################
 # 配置相对于工程根目录的代码路径，若有多个目录，以空格隔开
@@ -67,7 +67,7 @@ LIBS				:=
 # 静态库目录（要使用的静态库最上层目录，若有多个，以空格隔开）
 LIB_DIRS			:=
 # 头文件目录（要搜索的头文件最上层目录，若有多个，以空格隔开）
-INC_DIRS			:=
+INC_DIRS			:= $(TARGET_NAME)
 # 目标文件存放目录
 RELEASE_DIR			:= Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)
 # 编译中间文件存放目录

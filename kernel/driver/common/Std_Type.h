@@ -1,6 +1,6 @@
 /******************************************************************************
-* @file    main.c
-* @brief   kernel main.
+* @file    Std_Type.h
+* @brief   kernel格式相关的定义.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
 * @date    2025年04月27日 (created)
@@ -26,15 +26,17 @@
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-// #include "Std_Type.h"
-// #include "Monitor.h"
+#ifndef STD_TYPE_H
+#define STD_TYPE_H
 
-// char* helloWorld = "Hello World!\n";
+typedef unsigned long long  uint64;
+typedef long long           int64;
+typedef unsigned int        uint32;
+typedef int                 int32;
+typedef unsigned short      uint16;
+typedef short               int16;
+typedef unsigned char       uint8;
+typedef char                int8;
 
-int main(void)
-{
-    // monitor_Init();
-    // monitor_Put_String_With_Color(helloWorld, COLOR_LIGHT_GREEN);
-    while(1);
-    return 0;
-}
+
+#endif
