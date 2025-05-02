@@ -118,6 +118,7 @@ echo_info:
 $(TARGET_BASENAME).elf : $(relink) $(OBJ_FILES) $(LINK_FILE)
 	@echo "linking..."
 	@echo "generating $(notdir $@)..."
+	@echo "!!!!!!!!!!!!!!!!!!!!!!$(LFLAGS)"
 	@mkdir -p $(RELEASE_DIR)
 	@$(CC) -o $@ $(OBJ_FILES) $(LFLAGS)
 
