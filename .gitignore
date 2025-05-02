@@ -2,5 +2,6 @@
 reference/
 /command.txt
 /Build/bochsout.txt
+/Build/*.out
 /Bin/
 /Build/Objs/
