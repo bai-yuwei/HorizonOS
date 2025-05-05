@@ -55,9 +55,9 @@ export SYM_CMD	= $(OBJCOPY) --only-keep-debug
 export LIB_SUPPORT ?= LIB
 
 # 编译参数
-export CFLAGS += -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -no-pie -fno-pic -c 
+export CFLAGS += -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -no-pie -fno-pic
 
 # 链接参数
-export LFLAGS += -m32 -shared -T $(LD_FILE)
+export LFLAGS += -m elf_i386 -T $(LD_FILE)
 
 
