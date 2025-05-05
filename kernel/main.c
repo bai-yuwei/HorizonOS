@@ -34,6 +34,7 @@ char* helloWorld = "Hello World!\n";
 int main(void)
 {
     monitor_Init();
+    monitor_Clear();
     monitor_Put_String_With_Color(helloWorld, COLOR_LIGHT_GREEN);
     while(1);
     return 0;

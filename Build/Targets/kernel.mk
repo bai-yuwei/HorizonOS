@@ -53,7 +53,7 @@ MODE				?= Debug
 # 指定额外编译参数
 CFLAGS				+=
 # 指定额外链接参数
-LFLAGS				+= -Wl,-Map=../Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)/$(TARGET_NAME).map
+LFLAGS				+= -Map=../Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)/$(TARGET_NAME).map
 
 ###############################################################################
 # 配置相对于工程根目录的代码路径，若有多个目录，以空格隔开

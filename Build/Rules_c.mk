@@ -119,7 +119,7 @@ $(TARGET_BASENAME).elf : $(relink) $(OBJ_FILES) $(LINK_FILE)
 	@echo "linking..."
 	@echo "generating $(notdir $@)..."
 	@mkdir -p $(RELEASE_DIR)
-	@$(CC) -o $@ $(OBJ_FILES) $(LFLAGS)
+	@ld -o $@ $(OBJ_FILES) $(LFLAGS)
 
 # 生成 srec
 $(TARGET_BASENAME).srec : $(TARGET_BASENAME).elf
