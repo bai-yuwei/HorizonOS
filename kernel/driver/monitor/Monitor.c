@@ -29,6 +29,8 @@
 
 #include "Monitor.h"
 
+extern void* get_ebp();
+
 uint16* videoMemory = (uint16*)VIDEO_MEMORY_START;
 
 int16 cursorX = 0;
@@ -276,6 +278,7 @@ void monitor_Print(char* str)
     monitor_Put_String_With_Color(str, foreColor);
 }
 
+
 void monitor_Print_Line(char* str)
 {
     monitor_Put_String_With_Color(str, foreColor);
@@ -285,6 +288,13 @@ void monitor_Print_Line(char* str)
 void monitor_Print_With_Color(char* str, uint8 color)
 {
     monitor_Put_String_With_Color(str, color);
+}
+
+void monitor_Printf(char* str, ...)
+{
+    void* ebp = get_ebp();
+    void* argPtr = ebp + 12;
+    monitor_Printf_Args(str, argPtr);
 }
 
 /**
