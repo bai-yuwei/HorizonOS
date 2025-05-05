@@ -62,6 +62,7 @@ void monitor_Put_Dec_With_Color(int32 n, uint8 color);
 void monitor_Print(char* str);
 void monitor_Print_Line(char* str);
 void monitor_Print_With_Color(char* str, uint8 color);
+void monitor_Printf(char* str, ...);
 void monitor_Printf_Args(char* str, void* argPtr);
 
 #endif
