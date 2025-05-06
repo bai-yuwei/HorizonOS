@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    main.c
-* @brief   kernel main.
+* @file    Stdlib.c
+* @brief   通用库函数相关的文件.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年04月27日 (created)
+* @date    2025年05月06日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,28 +21,26 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年04月27日;
+* Date          : 2025年05月06日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#include "Std_Type.h"
-#include "Monitor.h"
-#include "Gdt.h"
 
-char* helloWorld = "Hello World!\n";
+#include "Stdlib.h"
 
-static void system_Init()
+void memset(void* ptr, uint8 value, int num)
 {
-    monitor_Init();
-    gdt_Init();
-} 
+    for (int i = 0; i < num; i++)
+    {
+        *((uint8*)(ptr + i)) = value;
+    }
+}
 
-int main(void)
+void memcpy(void* dest, const void* src, int num)
 {
-    system_Init();
-    monitor_Clear();
-    monitor_Printf(helloWorld);
-    while(1);
-    return 0;
+    for (int i = 0; i < num; i++)
+    {
+        *((uint8*)(dest + i)) = *((uint8*)(src + i));
+    }
 }

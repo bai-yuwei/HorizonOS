@@ -21,7 +21,7 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年04月27日;s
+* Date          : 2025年04月27日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
@@ -29,7 +29,7 @@
 
 #include "Monitor.h"
 
-extern void* get_ebp();
+extern void* get_Ebp();
 
 uint16* videoMemory = (uint16*)VIDEO_MEMORY_START;
 
@@ -292,7 +292,7 @@ void monitor_Print_With_Color(char* str, uint8 color)
 
 void monitor_Printf(char* str, ...)
 {
-    void* ebp = get_ebp();
+    void* ebp = get_Ebp();
     void* argPtr = ebp + 12;
     monitor_Printf_Args(str, argPtr);
 }
