@@ -29,7 +29,7 @@
 #ifndef MATH_H
 #define MATH_H
 
-#include "Std_Type.h"
+#include "Std_Types.h"
 
 int32 div(int32 x, int32 n);
 int32 mod(int32 x, int32 n);

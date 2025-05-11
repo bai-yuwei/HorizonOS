@@ -1,5 +1,5 @@
 /******************************************************************************
-* @file    Std_Type.h
+* @file    Std_Types.h
 * @brief   kernel格式相关的定义.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
@@ -26,8 +26,8 @@
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#ifndef STD_TYPE_H
-#define STD_TYPE_H
+#ifndef STD_TYPES_H
+#define STD_TYPES_H
 
 typedef unsigned long long  uint64;
 typedef long long           int64;
@@ -37,6 +37,11 @@ typedef unsigned short      uint16;
 typedef short               int16;
 typedef unsigned char       uint8;
 typedef char                int8;
+typedef uint8               bool;
 
+#define true 1
+#define false 0
+#define NULL 0
+#define NULL_PTR ((void*)0)
 
 #endif

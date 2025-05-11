@@ -30,7 +30,7 @@
 #ifndef GDT_H
 #define GDT_H
 
-#include "Std_Type.h"
+#include "Std_Types.h"
 #include "Stdlib.h"
 
 #define FLAG_G_4K  (1 << 3)
