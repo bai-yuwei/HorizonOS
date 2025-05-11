@@ -26,9 +26,11 @@
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#include "Std_Type.h"
+#include "Std_Types.h"
 #include "Monitor.h"
 #include "Gdt.h"
+#include "Interrupt.h"
+#include "Timer.h"
 
 char* helloWorld = "Hello World!\n";
 
@@ -36,6 +38,9 @@ static void system_Init()
 {
     monitor_Init();
     gdt_Init();
+    idt_Init();
+    timer_Init(TIMER_FREQUENCY);
+    enable_Interrupt();
 } 
 
 int main(void)
