@@ -76,7 +76,7 @@ LOAD Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
 LOAD Objs/kernel/kernel/Debug/kernel/main.c.o
 LOAD Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
 
-.text           0x00000000c0800000     0x147d
+.text           0x00000000c0800000     0x1482
                 0x00000000c0800000                code = .
                 0x00000000c0800000                _code = .
                 0x00000000c0800000                __code = .
@@ -163,7 +163,7 @@ LOAD Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
                 0x00000000c0800a76                refresh_Tss
  .text          0x00000000c0800a7e      0x21e Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
                 0x00000000c0800bde                gdt_Init
- .text          0x00000000c0800c9c      0x751 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .text          0x00000000c0800c9c      0x756 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
                 0x00000000c0800dd5                monitor_Init
                 0x00000000c0800ddb                monitor_Move_Cursor
                 0x00000000c0800e9a                monitor_Clear
@@ -176,35 +176,35 @@ LOAD Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
                 0x00000000c08012a6                monitor_Print_With_Color
                 0x00000000c08012c5                monitor_Printf
                 0x00000000c08012f0                monitor_Printf_Args
- .text          0x00000000c08013ed       0x58 Objs/kernel/kernel/Debug/kernel/main.c.o
-                0x00000000c0801417                main
- .text          0x00000000c0801445       0x38 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
-                0x00000000c0801445                div
-                0x00000000c0801466                mod
+ .text          0x00000000c08013f2       0x58 Objs/kernel/kernel/Debug/kernel/main.c.o
+                0x00000000c080141c                main
+ .text          0x00000000c080144a       0x38 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+                0x00000000c080144a                div
+                0x00000000c080146b                mod
 
-.iplt           0x00000000c0801480        0x0
- .iplt          0x00000000c0801480        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
+.iplt           0x00000000c0801490        0x0
+ .iplt          0x00000000c0801490        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
 
-.eh_frame       0x00000000c0801480      0x4c0
- .eh_frame      0x00000000c0801480       0x78 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
- .eh_frame      0x00000000c08014f8       0x40 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
+.eh_frame       0x00000000c0801484      0x4c0
+ .eh_frame      0x00000000c0801484       0x78 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
+ .eh_frame      0x00000000c08014fc       0x40 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
                                          0x58 (松开之前的大小)
- .eh_frame      0x00000000c0801538      0x100 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
+ .eh_frame      0x00000000c080153c      0x100 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
                                         0x118 (松开之前的大小)
- .eh_frame      0x00000000c0801638       0x40 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Timer.c.o
+ .eh_frame      0x00000000c080163c       0x40 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Timer.c.o
                                          0x58 (松开之前的大小)
- .eh_frame      0x00000000c0801678       0x80 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
+ .eh_frame      0x00000000c080167c       0x80 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
                                          0x98 (松开之前的大小)
- .eh_frame      0x00000000c08016f8      0x1c4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .eh_frame      0x00000000c08016fc      0x1c4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
                                         0x1dc (松开之前的大小)
- .eh_frame      0x00000000c08018bc       0x44 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .eh_frame      0x00000000c08018c0       0x44 Objs/kernel/kernel/Debug/kernel/main.c.o
                                          0x5c (松开之前的大小)
- .eh_frame      0x00000000c0801900       0x40 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .eh_frame      0x00000000c0801904       0x40 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
                                          0x58 (松开之前的大小)
 
-.rel.dyn        0x00000000c0801940        0x0
- .rel.iplt      0x00000000c0801940        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
- .rel.text      0x00000000c0801940        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
+.rel.dyn        0x00000000c0801944        0x0
+ .rel.iplt      0x00000000c0801944        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
+ .rel.text      0x00000000c0801944        0x0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Idt.S.o
 
 .data           0x00000000c0802000       0x48
                 0x00000000c0802000                data = .
@@ -270,16 +270,16 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
 .stabstr        0x0000000000000000       0x67
  .stabstr       0x0000000000000000       0x67 Objs/kernel/kernel/Debug/kernel/driver/common/Get_Register.S.o
 
-.debug_info     0x0000000000000000     0x1172
+.debug_info     0x0000000000000000     0x1175
  .debug_info    0x0000000000000000      0x11a Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_info    0x000000000000011a       0x21 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
  .debug_info    0x000000000000013b      0x122 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
  .debug_info    0x000000000000025d      0x399 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_info    0x00000000000005f6      0x1d0 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Timer.c.o
  .debug_info    0x00000000000007c6      0x38d Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_info    0x0000000000000b53      0x4b3 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_info    0x0000000000001006       0x9f Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_info    0x00000000000010a5       0xcd Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_info    0x0000000000000b53      0x4b6 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_info    0x0000000000001009       0x9f Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_info    0x00000000000010a8       0xcd Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
 
 .debug_abbrev   0x0000000000000000      0x6f6
  .debug_abbrev  0x0000000000000000       0x6c Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
@@ -330,16 +330,16 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
  .debug_macro   0x00000000000009f2       0x94 Objs/kernel/kernel/Debug/kernel/main.c.o
  .debug_macro   0x0000000000000a86       0x24 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
 
-.debug_line     0x0000000000000000      0x84e
+.debug_line     0x0000000000000000      0x851
  .debug_line    0x0000000000000000       0x6c Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_line    0x000000000000006c       0x40 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
  .debug_line    0x00000000000000ac       0x93 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
  .debug_line    0x000000000000013f      0x1b6 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_line    0x00000000000002f5      0x119 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Timer.c.o
  .debug_line    0x000000000000040e       0xc4 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_line    0x00000000000004d2      0x1d9 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_line    0x00000000000006ab      0x122 Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_line    0x00000000000007cd       0x81 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_line    0x00000000000004d2      0x1dc Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_line    0x00000000000006ae      0x122 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_line    0x00000000000007d0       0x81 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
 
 .debug_str      0x0000000000000000     0x24a5
  .debug_str     0x0000000000000000     0x1962 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o

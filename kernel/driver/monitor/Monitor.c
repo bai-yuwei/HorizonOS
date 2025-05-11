@@ -48,21 +48,38 @@ static void monitor_Set_Cursor(void)
     io_Out_Byte(0x3D5, cursorLocation);
 }
 
+/**
+ * @brief 当光标超出屏幕底部时，向上滚动屏幕内容。
+ * 
+ * 若光标位置超出屏幕的底部（第 25 行），此函数会将屏幕内容向上滚动一行，
+ * 并将最后一行填充为空白，同时调整光标的垂直位置到最后一行。
+ */
 static void monitor_Scroll(void)
 {
+    // 计算属性字节，将背景色左移 4 位，与前景色的低 4 位组合
     const uint8 attributeByte = (backColor << 4) | (foreColor & 0x0F);
+    // 生成空白字符的 16 位值，包含空格字符和属性信息
     const uint16 blank = 0x20 | (backColor << 4) | (attributeByte << 8);
+
+    // 检查光标是否超出屏幕底部（屏幕共 25 行，索引从 0 开始，因此 25 表示超出）
     if (cursorY >= 25)
     {
         int i;
+        // 将屏幕内容向上滚动一行，即把第 1 - 24 行的内容复制到第 0 - 23 行
         for (i = 0; i < 24 * 80; i++)
         {
+            // 将当前行下方一行对应位置的内容复制到当前位置
             videoMemory[i] = videoMemory[i + 80];
         }
+
+        // 将屏幕最后一行（第 24 行）填充为空白
         for (i = 24 * 80; i < 25 * 80; i++)
         {
+            // 将空白字符写入最后一行的每个位置
             videoMemory[i] = blank;
         }
+
+        // 调整光标垂直位置到最后一行
         cursorY = 24;
     }
 }
@@ -370,6 +387,7 @@ void monitor_Printf_Args(char* str, void* argPtr)
         {
             monitor_Put_Char_With_Color(c, foreColor);
         }
+        monitor_Scroll();
         // 索引加 1，移动到下一个字符
         i++;
     }
