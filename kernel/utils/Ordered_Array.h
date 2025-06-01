@@ -35,6 +35,11 @@
 #include "Std_Types.h"
 #include "Monitor.h"
 
+typedef uint8 ordered_array_return_t;
+
+#define OK 0
+#define OUT_OF_RANGE 1
+
 /**
  * @typedef comparator_t
  * @brief 定义一个函数指针类型，用于比较两个通用指针指向的数据。
@@ -68,10 +73,10 @@ typedef struct Ordered_Array
 
 int32 standard_Compare(void *a, void *b);
 ordered_array_t ordered_Array_Create(void* array, uint32 maxSize, comparator_t comparator);
-uint32 ordered_Array_Insert(ordered_array_t *orderedArray, void *element);
-uint32 ordered_Array_Remove(ordered_array_t *orderedArray, void *element);
+ordered_array_return_t ordered_Array_Insert(ordered_array_t *orderedArray, void *element);
+ordered_array_return_t ordered_Array_Remove(ordered_array_t *orderedArray, void *element);
 uint32 ordered_Array_Search(ordered_array_t *orderedArray, void *element);
 void* ordered_Array_Get(ordered_array_t *orderedArray, uint32 index);
-uint32 ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index);
+ordered_array_return_t ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index);
 void ordered_Array_Test();
 #endif

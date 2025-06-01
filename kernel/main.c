@@ -51,6 +51,7 @@ int main(void)
     system_Init();
     // ordered_Array_Test();
     // page_Table_Test();
+    // kheap_Test();
     while(1);
     return 0;
 }

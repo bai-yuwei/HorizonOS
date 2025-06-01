@@ -233,7 +233,6 @@ static void map_Page(uint32 virtualAddress, int32 frame)
     else
     {
         // 若 PTE 对应的页不存在于内存中
-        monitor_Printf("pte->present = %x\n", pte->present);
         if (!pte->present)
         {
             // 尝试分配一个新的物理帧
@@ -263,7 +262,6 @@ static void map_Page(uint32 virtualAddress, int32 frame)
 static void page_Fault_Handler(isr_params_t params)
 {
     uint32 faultAddr;
-    monitor_Printf("Page fault at %x\n", params.errCode);
     asm volatile("mov %%cr2, %0" : "=r"(faultAddr));
     int present = params.errCode & 0x1;
     int rw = params.errCode & 0x2;

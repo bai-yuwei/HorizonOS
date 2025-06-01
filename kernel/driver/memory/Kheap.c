@@ -55,24 +55,17 @@ static kheap_block_header_t* make_Block(uint32 startAddress, uint32 size, bool i
     uint32 endAddress = startAddress + size + BLOCK_META_SIZE;
     // 将起始地址转换为堆块头部指针，并赋值给 header
     kheap_block_header_t *header = (kheap_block_header_t *)startAddress;
-    monitor_Printf("make block\n");
-    monitor_Printf("startAddress = %x\n", startAddress);
     header->magic = KHEAP_MAGIC;
-    monitor_Printf("header->magic = %x\n", header->magic);
     // 设置堆块头部的大小信息
     header->size = size;
-    monitor_Printf("header->size = %x\n", header->size);
     // 设置堆块头部的空闲标记
     header->isFree = isFree;
-    monitor_Printf("header->isFree = %x\n", header->isFree);
     // 计算堆块尾部的地址，并将其转换为堆块尾部指针
     kheap_block_footer_t *footer = (kheap_block_footer_t *)(endAddress - FOOTER_SIZE);
     // 设置堆块尾部的魔术数字，用于验证堆块的完整性
     footer->magic = KHEAP_MAGIC;
-    monitor_Printf("footer->magic = %x\n", footer->magic);
     // 设置堆块尾部指向头部的指针
     footer->header = header;
-    monitor_Printf("footer->header = %x\n", footer->header);
     // 返回指向新创建堆块头部的指针
     return header;
 }
@@ -192,9 +185,9 @@ static kernel_heap_t kernel_Heap_Create(uint32 startAddress, uint32 endAddress, 
 {
     // 定义一个内核堆结构体变量
     kernel_heap_t heap;
+    ordered_array_return_t rtn = 0;
     // 创建一个有序数组作为堆的索引，用于管理堆块
     // 起始地址为传入的 startAddress，数组元素数量为 KHEAP_INDEX_NUM，比较函数为 standard_Compare
-    monitor_Printf("create ordered array\n");
     heap.index = ordered_Array_Create((void *)startAddress, KHEAP_INDEX_NUM, &kheap_Block_Compare);
     // 更新起始地址，跳过索引占用的内存空间
     startAddress += (sizeof(void*) * KHEAP_INDEX_NUM);
@@ -209,9 +202,11 @@ static kernel_heap_t kernel_Heap_Create(uint32 startAddress, uint32 endAddress, 
     // 在堆的起始地址创建一个新的堆块，数据部分大小为堆当前大小减去元数据大小，标记为未使用
     make_Block(startAddress, endAddress - startAddress - BLOCK_META_SIZE, IS_FREE);
     // 将新创建的堆块头部地址插入到堆的有序数组索引中
-    monitor_Printf("insert ordered array\n");
-    ordered_Array_Insert(&heap.index, (void *)startAddress);
-    monitor_Printf("kheap create over\n");
+    rtn = ordered_Array_Insert(&heap.index, (void *)startAddress);
+    if (rtn != 0)
+    {
+        monitor_Print("ordered_Array_Insert failed\n");
+    }
     // 返回初始化后的内核堆实例
     return heap;
 }
@@ -387,4 +382,19 @@ void* kfree(void* address)
 {
     free(&kheap, address);
     return nullptr;
+}
+
+void kheap_Test(void)
+{
+    monitor_Printf("kheap_Test\n");
+    uint32 *p1 = (uint32 *)kmalloc(0x1000, PAGE_ALIGNED);
+    *p1 = 100;
+    monitor_Printf("p1: %x\n", p1);
+    monitor_Printf("*p1: %d\n", *p1);
+    uint32 *p2 = (uint32 *)kmalloc(0x1000, PAGE_ALIGNED);
+    *p2 = 101;
+    monitor_Printf("p2: %x\n", p2);
+    monitor_Printf("*p2: %d\n", *p2);
+    kfree(p1);
+    kfree(p2);
 }
