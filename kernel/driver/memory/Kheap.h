@@ -83,5 +83,6 @@ typedef struct kernel_heap
 void kheap_Init(void);
 void* kmalloc(uint32 size, bool pageAligned);
 void* kfree(void* address);
+void kheap_Test(void);
 
 #endif

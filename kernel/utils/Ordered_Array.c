@@ -44,11 +44,11 @@ ordered_array_t ordered_Array_Create(void* array, uint32 maxSize, comparator_t c
     return orderedArray;
 }
 
-uint32 ordered_Array_Insert(ordered_array_t *orderedArray, void *element)
+ordered_array_return_t ordered_Array_Insert(ordered_array_t *orderedArray, void *element)
 {
     if (orderedArray->size >= orderedArray->maxSize)
     {
-        return 0;
+        return OUT_OF_RANGE;
     }
     uint32 i = 0;
     while (i < orderedArray->size && orderedArray->comparator(orderedArray->array[i], element) <= 0)
@@ -61,14 +61,14 @@ uint32 ordered_Array_Insert(ordered_array_t *orderedArray, void *element)
         orderedArray->array[j] = orderedArray->array[j - 1];
     }
     orderedArray->array[i] = element;
-    return 1;
+    return OK;
 }
 
-uint32 ordered_Array_Remove(ordered_array_t *orderedArray, void *element)
+ordered_array_return_t ordered_Array_Remove(ordered_array_t *orderedArray, void *element)
 {
     if (orderedArray->size == 0)
     {
-        return 0;
+        return OUT_OF_RANGE;
     }
     uint32 i = 0;
     while (i < orderedArray->size && orderedArray->comparator(orderedArray->array[i], element) != 0)
@@ -84,7 +84,7 @@ uint32 ordered_Array_Remove(ordered_array_t *orderedArray, void *element)
         orderedArray->array[j] = orderedArray->array[j + 1];
     }
     orderedArray->size--;
-    return 1;
+    return OK;
 }
 
 uint32 ordered_Array_Search(ordered_array_t *orderedArray, void *element)
@@ -110,26 +110,29 @@ void* ordered_Array_Get(ordered_array_t *orderedArray, uint32 index)
     return orderedArray->array[index];
 }
 
-uint32 ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index)
+ordered_array_return_t ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index)
 {
     if (index >= orderedArray->size)
     {
-        return 0;
+        return OUT_OF_RANGE;
     }
     for (uint32 i = index; i < orderedArray->size - 1; i++)
     {
         orderedArray->array[i] = orderedArray->array[i + 1];
     }
     orderedArray->size--;
-    return 1;
+    return OK;
 }
 
 void ordered_Array_Test()
 {
-    uint32 array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    uint32 array[11] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     uint32 element = 11;
-    ordered_array_t orderedArray = ordered_Array_Create(array, 10, standard_Compare);
-    ordered_Array_Insert(&orderedArray, &element);
+    ordered_array_t orderedArray = ordered_Array_Create(array, 11, standard_Compare);
+    monitor_Printf("orderedArray.array[9] = %d\n", orderedArray.array[9]);
+    ordered_Array_Insert(&orderedArray, (void*)element);
     monitor_Printf("insert over\n");
-    monitor_Printf("orderedArray.array[10] = %d\n", orderedArray.array[10]);
+    monitor_Printf("orderedArray.array[0] = %d\n", orderedArray.array[0]);
+    ordered_Array_Remove(&orderedArray, (void*)element);
+    monitor_Printf("orderedArray.array[0] = %d\n", orderedArray.array[0]);
 }
