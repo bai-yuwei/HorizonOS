@@ -50,7 +50,7 @@ export BIN_CMD	= $(OBJCOPY) -O binary
 export HEX_CMD	= $(OBJCOPY) -O ihex
 export SREC_CMD	= $(OBJCOPY) -O srec
 export SYM_CMD	= $(OBJCOPY) --only-keep-debug
-
+export NASM		= $(cross_prefix)nasm$(cross_suffix)
 # 编译 elf 所需的支持库
 export LIB_SUPPORT ?= LIB
 
@@ -59,5 +59,6 @@ export CFLAGS += -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -no-
 
 # 链接参数
 export LFLAGS += -m elf_i386 -T $(LD_FILE)
+export AFLAGS += -felf
 
 
