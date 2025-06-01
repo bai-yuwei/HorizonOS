@@ -26,16 +26,31 @@
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#include "Std_Type.h"
+#include "Std_Types.h"
 #include "Monitor.h"
+#include "Gdt.h"
+#include "Interrupt.h"
+#include "Timer.h"
+#include "Kheap.h"
 
 char* helloWorld = "Hello World!\n";
-
-int main(void)
+static void system_Init()
 {
     monitor_Init();
     monitor_Clear();
-    monitor_Put_String_With_Color(helloWorld, COLOR_LIGHT_GREEN);
+    monitor_Printf(helloWorld);
+    gdt_Init();
+    idt_Init();
+    page_Table_Init();
+    kheap_Init();
+    // timer_Init(TIMER_FREQUENCY);
+} 
+
+int main(void)
+{
+    system_Init();
+    // ordered_Array_Test();
+    // page_Table_Test();
     while(1);
     return 0;
 }

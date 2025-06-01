@@ -93,6 +93,7 @@ AFLAGS += -$(R_DEBUG_LEVEL)
 else
 CFLAGS += -$(D_OPTIMIZATION)
 CFLAGS += -$(D_DEBUG_LEVEL)
+CFLAGS += -g
 AFLAGS += -$(D_OPTIMIZATION)
 AFLAGS += -$(D_DEBUG_LEVEL)
 endif
@@ -170,6 +171,12 @@ else
 endif
 	@(ECHO) "generating $(notdir $@)..."
 	@$(AR) -rcsD $@ $(OBJ_FILES)
+
+# 编译.S
+$(OBJ_DIR)/%.S.o : $(ROOT_DIR)/%.S
+	@mkdir -p $(@D)
+	@echo "building $(patsubst $(ROOT_DIR)/%, $(ROOT_RELATIVE_DIR)/%, $<)"
+	@$(NASM) $(AFLAGS) $< -o $@
 
 # 编译.c
 $(OBJ_DIR)/%.c.o : $(ROOT_DIR)/%.c

@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    Math.h
-* @brief   数学相关工具函数的头文件.
+* @file    Std_Types.h
+* @brief   kernel格式相关的定义.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年05月01日 (created)
+* @date    2025年04月27日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,18 +21,27 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年05月01日;
+* Date          : 2025年04月27日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#ifndef MATH_H
-#define MATH_H
+#ifndef STD_TYPES_H
+#define STD_TYPES_H
 
-#include "Std_Types.h"
+typedef unsigned long long  uint64;
+typedef long long           int64;
+typedef unsigned int        uint32;
+typedef int                 int32;
+typedef unsigned short      uint16;
+typedef short               int16;
+typedef unsigned char       uint8;
+typedef char                int8;
+typedef uint8               bool;
 
-int32 div(int32 x, int32 n);
-int32 mod(int32 x, int32 n);
-uint32 max(uint32 a, uint32 b);
-uint32 min(uint32 a, uint32 b);
+#define true 1
+#define false 0
+#define NULL 0
+#define nullptr ((void*)0)
+
 #endif

@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    Std_Type.h
-* @brief   kernel格式相关的定义.
+* @file    Stdlib.h
+* @brief   通用库函数相关的头文件.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年04月27日 (created)
+* @date    2025年05月06日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,22 +21,17 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年04月27日;
+* Date          : 2025年05月06日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#ifndef STD_TYPE_H
-#define STD_TYPE_H
+#ifndef STD_LIB_H
+#define STD_LIB_H
 
-typedef unsigned long long  uint64;
-typedef long long           int64;
-typedef unsigned int        uint32;
-typedef int                 int32;
-typedef unsigned short      uint16;
-typedef short               int16;
-typedef unsigned char       uint8;
-typedef char                int8;
+#include "Std_Types.h"
 
+void memset(void* ptr, uint8 value, int num);
+void memcpy(void* dest, const void* src, int num);
 
 #endif

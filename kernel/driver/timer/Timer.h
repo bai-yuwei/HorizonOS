@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    Math.h
-* @brief   数学相关工具函数的头文件.
+* @file    Timer.h
+* @brief   时钟中断处理相关的头文件.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年05月01日 (created)
+* @date    2025年05月11日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,18 +21,19 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年05月01日;
+* Date          : 2025年05月11日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#ifndef MATH_H
-#define MATH_H
+#ifndef TIMER_H
+#define TIMER_H
 
-#include "Std_Types.h"
+#include "Interrupt.h"
+#include "Monitor.h"
 
-int32 div(int32 x, int32 n);
-int32 mod(int32 x, int32 n);
-uint32 max(uint32 a, uint32 b);
-uint32 min(uint32 a, uint32 b);
-#endif
+#define TIMER_FREQUENCY 50
+
+void timer_Init(uint32 frequency);
+
+#endif // !TIMER_H
