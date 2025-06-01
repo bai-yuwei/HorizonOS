@@ -59,3 +59,13 @@ int32 mod(int32 x, int32 n)
     // 最后再次取余得到 [0, n) 范围内的结果
     return (x % n + n) % n;
 }
+
+uint32 max(uint32 a, uint32 b)
+{
+    return a > b ? a : b;
+}
+
+uint32 min(uint32 a, uint32 b)
+{
+    return a < b? a : b;
+}
