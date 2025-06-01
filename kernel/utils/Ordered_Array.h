@@ -33,6 +33,7 @@
 #define ORDERED_ARRAY_H
 
 #include "Std_Types.h"
+#include "Monitor.h"
 
 /**
  * @typedef comparator_t
@@ -72,5 +73,5 @@ uint32 ordered_Array_Remove(ordered_array_t *orderedArray, void *element);
 uint32 ordered_Array_Search(ordered_array_t *orderedArray, void *element);
 void* ordered_Array_Get(ordered_array_t *orderedArray, uint32 index);
 uint32 ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index);
-
+void ordered_Array_Test();
 #endif

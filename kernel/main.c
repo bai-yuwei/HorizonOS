@@ -42,14 +42,15 @@ static void system_Init()
     gdt_Init();
     idt_Init();
     page_Table_Init();
-    // kheap_Init();
+    kheap_Init();
     // timer_Init(TIMER_FREQUENCY);
 } 
 
 int main(void)
 {
     system_Init();
-    page_Table_Test();
+    // ordered_Array_Test();
+    // page_Table_Test();
     while(1);
     return 0;
 }

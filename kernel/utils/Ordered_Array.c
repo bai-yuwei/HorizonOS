@@ -55,12 +55,12 @@ uint32 ordered_Array_Insert(ordered_array_t *orderedArray, void *element)
     {
         i++;
     }
+    orderedArray->size++;
     for (uint32 j = orderedArray->size - 1; j > i; j--)
     {
         orderedArray->array[j] = orderedArray->array[j - 1];
     }
     orderedArray->array[i] = element;
-    orderedArray->size++;
     return 1;
 }
 
@@ -122,4 +122,14 @@ uint32 ordered_Array_Remove_Index(ordered_array_t *orderedArray, uint32 index)
     }
     orderedArray->size--;
     return 1;
+}
+
+void ordered_Array_Test()
+{
+    uint32 array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    uint32 element = 11;
+    ordered_array_t orderedArray = ordered_Array_Create(array, 10, standard_Compare);
+    ordered_Array_Insert(&orderedArray, &element);
+    monitor_Printf("insert over\n");
+    monitor_Printf("orderedArray.array[10] = %d\n", orderedArray.array[10]);
 }
