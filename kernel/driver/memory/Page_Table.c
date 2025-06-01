@@ -334,12 +334,6 @@ void page_Table_Init(void)
     register_Interrupt_Handler(14, page_Fault_Handler);
 }
 
-void test_Page_Table(void)
-{
-    monitor_Printf("test page table\n");
-    uint32 *addr = (uint32*)0xC;
-    *addr = 1;
-}
 
 
 void page_Table_Test(void)

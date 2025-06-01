@@ -33,6 +33,7 @@
 #define KHEAP_H
 
 #include "Std_Types.h"
+#include "Monitor.h"
 #include "Ordered_Array.h"
 #include "Page_Table.h"
 
