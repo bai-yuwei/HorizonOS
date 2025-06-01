@@ -33,5 +33,6 @@
 
 int32 div(int32 x, int32 n);
 int32 mod(int32 x, int32 n);
-
+uint32 max(uint32 a, uint32 b);
+uint32 min(uint32 a, uint32 b);
 #endif

@@ -31,23 +31,25 @@
 #include "Gdt.h"
 #include "Interrupt.h"
 #include "Timer.h"
+#include "Kheap.h"
 
 char* helloWorld = "Hello World!\n";
-
 static void system_Init()
 {
     monitor_Init();
+    monitor_Clear();
+    monitor_Printf(helloWorld);
     gdt_Init();
     idt_Init();
-    timer_Init(TIMER_FREQUENCY);
-    enable_Interrupt();
+    page_Table_Init();
+    // kheap_Init();
+    // timer_Init(TIMER_FREQUENCY);
 } 
 
 int main(void)
 {
     system_Init();
-    monitor_Clear();
-    monitor_Printf(helloWorld);
+    page_Table_Test();
     while(1);
     return 0;
 }

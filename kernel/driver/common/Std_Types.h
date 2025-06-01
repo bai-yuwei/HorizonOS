@@ -42,6 +42,6 @@ typedef uint8               bool;
 #define true 1
 #define false 0
 #define NULL 0
-#define NULL_PTR ((void*)0)
+#define nullptr ((void*)0)
 
 #endif

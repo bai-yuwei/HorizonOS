@@ -28,6 +28,8 @@
 ******************************************************************************/
 #include "Interrupt.h"
 
+extern void reload_Idt(uint32 idtPtrAddress);
+
 idt_ptr_t idtPtr;
 static idt_entry_t idt[256];
 static isr_t interruptHandlers[256];
@@ -195,6 +197,7 @@ void idt_Init(void)
 
     // 重新加载中断描述符表，使新的 IDT 设置生效
     reload_Idt((uint32)&idtPtr);
+    // 初始化可编程中断控制器（PIC）
     pic_Init();
 }
 

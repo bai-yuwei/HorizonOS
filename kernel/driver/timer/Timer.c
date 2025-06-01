@@ -31,7 +31,7 @@
 
 static uint32 tick = 0;
 
-static void timer_Callback(isr_params_t params)
+static void timer_Handler(isr_params_t params)
 {
     monitor_Printf("tick = %d\n", tick++);
 }
@@ -58,8 +58,8 @@ void timer_Init(uint32 frequency)
     
     // 注册定时器中断（IRQ0）的处理回调函数
     // IRQ0_INT_NUM 是定时器中断对应的中断号
-    // timer_Callback 是中断发生时要调用的回调函数
-    register_Interrupt_Handler(IRQ0_INT_NUM, &timer_Callback);
+    // timer_Handler 是中断发生时要调用的回调函数
+    register_Interrupt_Handler(IRQ0_INT_NUM, &timer_Handler);
     
     // 向 PIT 的控制寄存器（端口 0x43）写入控制字 0x36
     // 0x36 表示选择计数器 0，先读写低字节再读写高字节，模式 3（方波发生器），二进制计数
