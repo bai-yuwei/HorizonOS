@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    Stdlib.h
-* @brief   通用库函数相关的头文件.
+* @file    Process.h
+* @brief   进程相关的头文件.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年05月06日 (created)
+* @date    2025年06月01日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,22 +21,27 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年05月06日;
+* Date          : 2025年06月01日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#ifndef STD_LIB_H
-#define STD_LIB_H
-
+#ifndef PROCESS_H
+#define PROCESS_H
 #include "Std_Types.h"
 
-void memset(void* ptr, uint8 value, int num);
-void memcpy(void* dest, const void* src, int num);
-int32 strcpy(char* dst, const char* src);
-int32 strcmp(const char* str1, const char* str2);
-int strlen(const char* str);
-int32 int_To_Str(char* str, int32 num);
-int32 int_To_Hex(char* str, int32 num);
-void sprintf(char* str, const char* format, ...);
-#endif
+enum process_status {
+    PROCESS_NORMAL,
+    PROCESS_EXIT,
+    PROCESS_EXIT_ZOMBIE
+};
+
+struct process_struct
+{
+    uint32 pid;
+    char name[32];
+    struct process_struct* parent;
+    enum process_status status;
+};
+
+#endif //!PROCESS_H

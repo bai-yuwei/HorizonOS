@@ -51,7 +51,7 @@ R_DEBUG_LEVEL		:= g0
 # 默认模式，如果 makefile 中没有指定，则采用此处定义的模式，可设置为 Debug/Release
 MODE				?= Debug
 # 指定额外编译参数
-CFLAGS				+=
+CFLAGS				+= -DDEBUG
 # 指定额外链接参数
 LFLAGS				+= -Map=../Bin/$(PRODUCT)/$(TARGET_NAME)/$(MODE)/$(TARGET_NAME).map
 

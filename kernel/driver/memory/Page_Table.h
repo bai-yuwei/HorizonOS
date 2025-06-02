@@ -113,6 +113,7 @@ typedef struct page_directory
 
 void enable_Paging(void);
 void reload_Page_Directory(page_directory_t *pageDirectory);
+void map_Page(uint32 virtualAddress, int32 frame);
 void page_Table_Init(void);
 void page_Table_Test(void);
 
