@@ -1,9 +1,9 @@
 /******************************************************************************
-* @file    main.c
-* @brief   kernel main.
+* @file    Debug.h
+* @brief   调试相关的头文件.
 * @details This is the detail description.
 * @author  ywBai <yw_bai@outlook.com>
-* @date    2025年04月27日 (created)
+* @date    2025年06月02日 (created)
 * @version 0.0.1
 * @par Copyright (C):
 *          Bai, yuwei. All Rights Reserved.
@@ -21,40 +21,28 @@
 * 5. Else:
 *      None.
 * @par Modification:
-* Date          : 2025年04月27日;
+* Date          : 2025年06月02日;
 * Revision         : 0.0.1;
 * Author           : ywBai;
 * Contents         :
 ******************************************************************************/
-#include "Std_Types.h"
+
+#ifndef DEBUG_H
+#define DEBUG_H
+
 #include "Monitor.h"
-#include "Gdt.h"
 #include "Interrupt.h"
-#include "Timer.h"
-#include "Kheap.h"
-#include "Page_Table.h"
-#include "Linked_List.h"
 
-char* helloWorld = "Hello World!\n";
-static void system_Init()
-{
-    monitor_Init();
-    monitor_Clear();
-    monitor_Printf(helloWorld);
-    gdt_Init();
-    idt_Init();
-    page_Table_Init();
-    kheap_Init();
-    // timer_Init(TIMER_FREQUENCY);
-} 
 
-int main(void)
-{
-    system_Init();
-    // ordered_Array_Test();
-    // page_Table_Test();
-    // kheap_Test();
-    doubly_Linked_Test();
-    while(1);
-    return 0;
-}
+#define PANIC() oh_Panic(__FILE__, __FUNCTION__, __LINE__)
+
+#ifndef DEBUG
+#define ASSERT(CONDITION) ((void)0)
+#else
+#define ASSERT(CONDITION) if (CONDITION) {} else {PANIC();}
+#endif
+
+
+void oh_Panic(const char* file, const char* func, int line);
+
+#endif // DEBUG_H

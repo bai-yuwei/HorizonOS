@@ -166,6 +166,19 @@ static void clear_Page(uint32 addr)
 //     if (!)
 // }
 
+static void page_Fault_Handler(isr_params_t params)
+{
+    uint32 faultAddr;
+    asm volatile("mov %%cr2, %0" : "=r"(faultAddr));
+    int present = params.errCode & 0x1;
+    int rw = params.errCode & 0x2;
+    int userMode = params.errCode & 0x4;
+    int reserved = params.errCode & 0x8;
+    int id = params.errCode & 0x10;
+    map_Page(faultAddr / PAGE_SIZE * PAGE_SIZE, -1);
+    reload_Page_Directory(currentPageDirectory);
+}
+
 /**
  * @brief 将虚拟地址映射到指定物理帧。
  * 
@@ -176,7 +189,7 @@ static void clear_Page(uint32 addr)
  * @param virtualAddress 要映射的虚拟地址。
  * @param frame 要映射到的物理帧地址，若为负数则尝试分配新的物理帧。
  */
-static void map_Page(uint32 virtualAddress, int32 frame)
+void map_Page(uint32 virtualAddress, int32 frame)
 {
     // 通过右移 22 位计算虚拟地址对应的页目录项（PDE）索引
     // 在 32 位 x86 分页机制中，虚拟地址的高 10 位用于索引页目录项
@@ -257,19 +270,6 @@ static void map_Page(uint32 virtualAddress, int32 frame)
             clear_Page(virtualAddress);
         }
     }
-}
-
-static void page_Fault_Handler(isr_params_t params)
-{
-    uint32 faultAddr;
-    asm volatile("mov %%cr2, %0" : "=r"(faultAddr));
-    int present = params.errCode & 0x1;
-    int rw = params.errCode & 0x2;
-    int userMode = params.errCode & 0x4;
-    int reserved = params.errCode & 0x8;
-    int id = params.errCode & 0x10;
-    map_Page(faultAddr / PAGE_SIZE * PAGE_SIZE, -1);
-    reload_Page_Directory(currentPageDirectory);
 }
 
 /**
