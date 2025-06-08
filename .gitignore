@@ -1,5 +1,6 @@
 .vscode/
 reference/
 /Build/bochsout.txt
+/Build/gdb_log.txt
 /Build/*.out
 /Build/Objs/

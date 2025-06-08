@@ -203,9 +203,11 @@ void doubly_Linked_Test()
 {
     monitor_Printf("linked_list test ...\n");
     doubly_linked_list_t list = create_Doubly_Linked_List();
+    uint64 test = sizeof(doubly_linked_list_node_t);
     doubly_linked_list_node_t* node1 = (doubly_linked_list_node_t*)kmalloc(sizeof(doubly_linked_list_node_t), NOT_PAGE_ALIGNED);
     doubly_linked_list_node_t* node2 = (doubly_linked_list_node_t*)kmalloc(sizeof(doubly_linked_list_node_t), NOT_PAGE_ALIGNED);
     doubly_linked_list_node_t* node3 = (doubly_linked_list_node_t*)kmalloc(sizeof(doubly_linked_list_node_t), NOT_PAGE_ALIGNED);
+    doubly_linked_list_node_t* node4 = (doubly_linked_list_node_t*)kmalloc(sizeof(doubly_linked_list_node_t), NOT_PAGE_ALIGNED);
     doubly_Linked_List_Append(&list, node1);
     ASSERT(list.size == 1);
     ASSERT(list.head == node1);
