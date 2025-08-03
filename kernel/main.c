@@ -34,6 +34,7 @@
 #include "Kheap.h"
 #include "Page_Table.h"
 #include "Linked_List.h"
+#include "Scheduler.h"
 
 char* helloWorld = "Hello World!\n";
 static void system_Init()
@@ -45,16 +46,18 @@ static void system_Init()
     idt_Init();
     page_Table_Init();
     kheap_Init();
-    // timer_Init(TIMER_FREQUENCY);
+    schedule_Init();
+    timer_Init(TIMER_FREQUENCY);
 } 
 
 int main(void)
 {
     system_Init();
+    thread_Test();
     // ordered_Array_Test();
     // page_Table_Test();
     // kheap_Test();
-    doubly_Linked_Test();
+    // doubly_Linked_Test();
     while(1);
     return 0;
 }

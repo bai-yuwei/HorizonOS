@@ -34,12 +34,16 @@
 #include "Kheap.h"
 #include "Stdlib.h"
 #include "Interrupt.h"
+#include "Linked_List.h"
+
+#define THREAD_DEFAULT_PRIORITY  10
 
 #define KERNEL_STACK_SIZE  8192
 
 typedef void threadFunc();
 
 typedef isr_params_t interrupt_stack_t;
+typedef doubly_linked_list_node_t thread_node_t;
 
 enum thread_status {
     THREAD_RUNNING,
@@ -47,6 +51,7 @@ enum thread_status {
     THREAD_BLOCKED,
     THREAD_WAITING,
     THREAD_HANGING,
+    THREAD_EXITING,
     THREAD_DEAD
 };
 
@@ -131,10 +136,6 @@ struct switch_stack
     // 保存此寄存器的值可在上下文恢复后继续执行未完成的指令序列。
     uint32 eip;
 
-    // 起始指令指针，可能记录线程或任务开始执行的初始指令地址。
-    // 用于某些特殊情况下，如重新启动任务等。
-    uint32 startEip;
-
     // 未使用的返回地址指针，可能是为了兼容某种调用约定或预留扩展。
     // 通常在函数调用时，返回地址会被压入栈中，这里可能是预留的相关位置。
     void (*unusedReturnAddr);
@@ -145,4 +146,8 @@ struct switch_stack
 };
 typedef struct switch_stack switch_stack_t;
 
+
+tcb_t* thread_Init(tcb_t* thread, char* name, void* function, uint32 priority, uint8 user);
+
+void thread_Test(void);
 #endif // !THR

@@ -131,5 +131,5 @@ typedef struct tss_entry tss_entry_t;
 
 
 void gdt_Init();
-
+void updateTssEsp(uint32 esp);
 #endif
