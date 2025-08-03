@@ -266,7 +266,7 @@ static void* alloc(kernel_heap_t *heap, uint32 size, bool pageAligned)
     // 获取该堆块的数据部分大小
     uint32 blockSize = header->size;
     // 从索引数组中移除该堆块的头部地址
-    ordered_Array_Remove_Index(&heap->index, (void *)index);
+    ordered_Array_Remove_Index(&heap->index, index);
     // 如果需要页对齐
     if (pageAligned)
     {

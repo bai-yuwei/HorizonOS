@@ -33,7 +33,7 @@ static uint32 tick = 0;
 
 static void timer_Handler(isr_params_t params)
 {
-    monitor_Printf("tick = %d\n", tick++);
+    // monitor_Printf("tick = %d\n", tick++);
 }
 
 /**

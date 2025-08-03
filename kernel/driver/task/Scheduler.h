@@ -31,7 +31,11 @@
 #define SCHEDULER_H
 
 #include "Thread.h"
+#include "Gdt.h"
 
-
+tcb_t* get_Current_Thread();
+void add_Dead_Thread(tcb_t* thread);
+void schedule_Thread_Exit();
+void schedule_Init();
 
 #endif // !SCHEDULER_H

@@ -10,7 +10,6 @@ set language c
 symbol-file ../Bin/kernel/kernel/Debug/kernel.sym
 # 在 main 函数处设置断点
 break main
-break doubly_Linked_Test
 # 避免缺页中断直接退出
 # handle all nostop noprint pass
 handle SIGSEGV nostop noprint pass

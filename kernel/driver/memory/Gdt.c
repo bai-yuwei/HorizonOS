@@ -142,3 +142,8 @@ void gdt_Init()
     // 调用 refresh_Tss 函数，刷新任务状态段，确保 TSS 信息正确加载到 CPU 中。
     refresh_Tss();
 }
+
+void updateTssEsp(uint32 esp)
+{
+    tssEntry.esp0 = esp;
+}
