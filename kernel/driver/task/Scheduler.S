@@ -1,6 +1,10 @@
+[GLOBAL cpu_Idle]
 [GLOBAL context_Switch]
 [GLOBAL resume_Thread]
 
+cpu_Idle:
+  hlt
+  ret
 
 context_Switch:
   push eax

@@ -94,7 +94,7 @@ struct thread_struct
 
     // 一个布尔值，指示该线程是否需要重新调度。
     // 当这个值为 true 时，操作系统会在合适的时机进行任务调度，切换到其他线程。
-    bool needReschedule;
+    bool needReSchedule;
 
     // 抢占计数器，用于控制内核抢占。
     // 当该值大于 0 时，内核抢占被禁止，线程不会被其他线程抢占执行。
@@ -148,6 +148,6 @@ typedef struct switch_stack switch_stack_t;
 
 
 tcb_t* thread_Init(tcb_t* thread, char* name, void* function, uint32 priority, uint8 user);
-
+void destroy_Thread(tcb_t* thread);
 void thread_Test(void);
 #endif // !THR

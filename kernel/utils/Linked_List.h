@@ -50,7 +50,7 @@ typedef struct doubly_linked_list doubly_linked_list_t;
 
 void doubly_Linked_List_Init(doubly_linked_list_t *list);
 doubly_linked_list_t create_Doubly_Linked_List(void);
-void doubly_List_Move(doubly_linked_list_t *dst, doubly_linked_list_t *src);
+void doubly_Linked_List_Move(doubly_linked_list_t *dst, doubly_linked_list_t *src);
 void doubly_Lost_Concatenate(doubly_linked_list_t *dst, doubly_linked_list_t *src);
 void doubly_Linked_List_Append(doubly_linked_list_t *list, doubly_linked_list_node_t *node);
 void doubly_Linked_List_Insert(doubly_linked_list_t *list, doubly_linked_list_node_t *node, doubly_linked_list_node_t *prevNode);

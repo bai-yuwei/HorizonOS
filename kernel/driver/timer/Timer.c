@@ -33,6 +33,12 @@ static uint32 tick = 0;
 
 static void timer_Handler(isr_params_t params)
 {
+    tcb_t* currentThread = get_Current_Thread();
+    currentThread->ticks++;
+    if (currentThread->ticks >= currentThread->priority)
+    {
+        currentThread->needReSchedule = true;
+    }
     // monitor_Printf("tick = %d\n", tick++);
 }
 

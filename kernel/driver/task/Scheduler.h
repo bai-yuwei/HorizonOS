@@ -33,9 +33,20 @@
 #include "Thread.h"
 #include "Gdt.h"
 
+
 tcb_t* get_Current_Thread();
+thread_node_t* get_Current_Thread_Node();
 void add_Dead_Thread(tcb_t* thread);
 void schedule_Thread_Exit();
 void schedule_Init();
-
+void schedule_Mark_Thread_Block();
+void schedule_Thread_Yield();
+void add_Thread_To_Schedule_Head(thread_node_t* threadNode);
+void add_Thread_Node_To_Schedule(thread_node_t* threadNode);
+void add_Thread_To_Schedule(tcb_t* thread);
+void schedule_Thread_Exit();
+void add_Dead_Thread(tcb_t* thread);
+void disable_Preempt();
+void enable_Preempt();
+void schedule();
 #endif // !SCHEDULER_H

@@ -125,3 +125,9 @@ void thread_Test(void)
         "movl %0, %%esp; \
         jmp resume_Thread": : "g" (testThread->kernelEsp) : "memory");
 }
+
+void destroy_Thread(tcb_t* thread)
+{
+    kfree((void*)thread->kernelStack);
+    kfree(thread);
+}
