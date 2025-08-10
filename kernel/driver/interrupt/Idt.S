@@ -102,8 +102,7 @@ isr_Common_Stub:
   call isr_Handler
 
 interrupt_Exit:
-  ; call scheduler
-  ; call schedule
+  call schedule
 
   ; recover the original data segment
   pop eax

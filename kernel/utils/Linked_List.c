@@ -43,7 +43,7 @@ doubly_linked_list_t create_Doubly_Linked_List(void)
     return list;
 }
 
-void doubly_List_Move(doubly_linked_list_t *dst, doubly_linked_list_t *src)
+void doubly_Linked_List_Move(doubly_linked_list_t *dst, doubly_linked_list_t *src)
 {
     dst->head = src->head;
     dst->tail = src->tail;
@@ -71,7 +71,7 @@ void doubly_Lost_Concatenate(doubly_linked_list_t *dst, doubly_linked_list_t *sr
     if (dst->size == 0)
     {
         // 直接将源链表移动到目标链表，实现拼接
-        doubly_List_Move(dst, src);
+        doubly_Linked_List_Move(dst, src);
         return;
     }
     // 将目标链表的尾节点的 next 指针指向源链表的头节点

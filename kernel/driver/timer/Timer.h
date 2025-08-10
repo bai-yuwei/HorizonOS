@@ -31,6 +31,8 @@
 
 #include "Interrupt.h"
 #include "Monitor.h"
+#include "Thread.h"
+#include "Scheduler.h"
 
 #define TIMER_FREQUENCY 50
 

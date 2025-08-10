@@ -46,18 +46,18 @@ static void system_Init()
     idt_Init();
     page_Table_Init();
     kheap_Init();
-    schedule_Init();
     timer_Init(TIMER_FREQUENCY);
+    schedule_Init();
 } 
 
 int main(void)
 {
     system_Init();
-    thread_Test();
+    // thread_Test();
     // ordered_Array_Test();
     // page_Table_Test();
     // kheap_Test();
     // doubly_Linked_Test();
-    while(1);
+    // while(1);
     return 0;
 }
