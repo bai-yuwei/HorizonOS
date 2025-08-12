@@ -37,7 +37,6 @@
 #include "Ordered_Array.h"
 #include "Page_Table.h"
 
-
 #define HEADER_SIZE (sizeof(kheap_block_header_t))
 #define FOOTER_SIZE (sizeof(kheap_block_footer_t))
 #define BLOCK_META_SIZE (sizeof(kheap_block_header_t) + sizeof(kheap_block_footer_t))
