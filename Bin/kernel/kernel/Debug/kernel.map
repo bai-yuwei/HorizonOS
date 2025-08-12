@@ -35,6 +35,9 @@ idtPtr              0x6               Objs/kernel/kernel/Debug/kernel/driver/int
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
  .debug_macro   0x0000000000000000      0x586 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
  .debug_macro   0x0000000000000000       0x22 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
  .debug_macro   0x0000000000000000       0x6a Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
@@ -85,6 +88,9 @@ idtPtr              0x6               Objs/kernel/kernel/Debug/kernel/driver/int
  .debug_macro   0x0000000000000000       0x10 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
  .debug_macro   0x0000000000000000       0x4c Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
  .debug_macro   0x0000000000000000       0x4c Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_macro   0x0000000000000000       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_macro   0x0000000000000000       0x10 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_macro   0x0000000000000000       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
  .group         0x0000000000000000        0x8 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
@@ -321,7 +327,7 @@ LOAD Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
 LOAD Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
 LOAD Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
-.text           0x00000000c0800000     0x3ddc
+.text           0x00000000c0800000     0x3dfc
                 0x00000000c0800000                code = .
                 0x00000000c0800000                _code = .
                 0x00000000c0800000                __code = .
@@ -413,162 +419,162 @@ LOAD Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
  .text          0x00000000c0800dee      0x22c Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
                 0x00000000c0800f4e                gdt_Init
                 0x00000000c080100c                updateTssEsp
- .text          0x00000000c080101a      0x727 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .text          0x00000000c080101a      0x73c Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
                 0x00000000c08015c7                kheap_Init
-                0x00000000c080162b                kmalloc
-                0x00000000c080165e                kfree
-                0x00000000c080167e                kheap_Test
- .text          0x00000000c0801741      0x515 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
-                0x00000000c080195e                map_Page
-                0x00000000c0801b32                enable_Paging
-                0x00000000c0801b4e                reload_Page_Directory
-                0x00000000c0801b5c                page_Table_Init
-                0x00000000c0801c11                page_Table_Test
- .text          0x00000000c0801c56      0x756 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
-                0x00000000c0801d8f                monitor_Init
-                0x00000000c0801d95                monitor_Move_Cursor
-                0x00000000c0801e54                monitor_Clear
-                0x00000000c0801ed4                monitor_Put_Char_With_Color
-                0x00000000c0801fe1                monitor_Put_String_With_Color
-                0x00000000c0802019                monitor_Put_Hex_With_Color
-                0x00000000c08020fe                monitor_Put_Dec_With_Color
-                0x00000000c0802219                monitor_Print
-                0x00000000c0802233                monitor_Print_Line
-                0x00000000c0802260                monitor_Print_With_Color
-                0x00000000c080227f                monitor_Printf
-                0x00000000c08022aa                monitor_Printf_Args
- *fill*         0x00000000c08023ac        0x4 
- .text          0x00000000c08023b0        0xb Objs/kernel/kernel/Debug/kernel/driver/sync/Cas.S.o
-                0x00000000c08023b0                atomic_Exchange
- .text          0x00000000c08023bb       0xc9 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
-                0x00000000c08023bb                cond_Var_Init
-                0x00000000c08023d3                cond_Var_Wait
-                0x00000000c0802449                cond_Var_Notify
- .text          0x00000000c0802484       0x7d Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
-                0x00000000c0802484                spinlock_Init
-                0x00000000c080249d                spinlock_Lock
-                0x00000000c08024ab                spinlock_Lock_Irq_Save
-                0x00000000c08024d6                spinlock_Unlock
-                0x00000000c08024e4                spinlock_Unlock_Irq_Restore
- .text          0x00000000c0802501       0x61 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
-                0x00000000c0802501                yieldlock_Init
-                0x00000000c0802510                yieldlock_Lock
-                0x00000000c0802535                yieldlock_TryLock
-                0x00000000c0802553                yieldlock_Unlock
- .text          0x00000000c0802562        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- *fill*         0x00000000c0802562        0xe 
- .text          0x00000000c0802570       0x1e Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.S.o
-                0x00000000c0802570                cpu_Idle
-                0x00000000c0802572                context_Switch
-                0x00000000c0802585                resume_Thread
- .text          0x00000000c080258e      0x46f Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
-                0x00000000c0802795                get_Current_Thread_Node
-                0x00000000c080279f                get_Current_Thread
-                0x00000000c08027bb                add_Dead_Thread
-                0x00000000c08027e1                schedule_Thread_Exit
-                0x00000000c080280f                add_Thread_To_Schedule
-                0x00000000c0802840                add_Thread_Node_To_Schedule
-                0x00000000c0802883                add_Thread_To_Schedule_Head
-                0x00000000c08028bb                schedule_Thread_Yield
-                0x00000000c08028f4                schedule_Mark_Thread_Block
-                0x00000000c080290f                schedule_Init
-                0x00000000c080298a                disable_Preempt
-                0x00000000c080299e                enable_Preempt
-                0x00000000c08029b2                schedule
- .text          0x00000000c08029fd      0x240 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
-                0x00000000c0802a10                thread_Init
-                0x00000000c0802be1                thread_Test
-                0x00000000c0802c14                destroy_Thread
- .text          0x00000000c0802c3d       0xa8 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
-                0x00000000c0802c78                timer_Init
- .text          0x00000000c0802ce5       0x6e Objs/kernel/kernel/Debug/kernel/main.c.o
-                0x00000000c0802d2f                main
- .text          0x00000000c0802d53      0x398 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
-                0x00000000c0802d53                bitmap_Create
-                0x00000000c0802d90                bitmap_Init
-                0x00000000c0802e15                bitmap_Set_Bit
-                0x00000000c0802e65                bitmap_Clear_Bit
-                0x00000000c0802eb7                bitmap_Get_Bit
-                0x00000000c0802efa                bitmap_Find_First_Free_Bit
-                0x00000000c0802f7c                bitmap_Clear
-                0x00000000c0802fb0                bitmap_Allocate_First_Free_Bit
-                0x00000000c0802fe4                bitmap_Expand
-                0x00000000c08030c6                bitmap_Destroy
- .text          0x00000000c08030eb       0x35 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
-                0x00000000c08030eb                oh_Panic
- .text          0x00000000c0803120        0x0 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .text          0x00000000c0803120      0x8b1 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
-                0x00000000c0803120                doubly_Linked_List_Init
-                0x00000000c0803143                create_Doubly_Linked_List
-                0x00000000c0803170                doubly_Linked_List_Move
-                0x00000000c08031a3                doubly_Lost_Concatenate
-                0x00000000c0803216                doubly_Linked_List_Append
-                0x00000000c080329d                doubly_Linked_List_Insert
-                0x00000000c0803369                doubly_Linked_List_Insert_Head
-                0x00000000c0803385                doubly_Linked_List_Remove
-                0x00000000c0803418                doubly_Linked_List_Append_Data
-                0x00000000c080344c                doubly_Linked_List_Remove_Data
-                0x00000000c080348b                doubly_Linked_Test
- .text          0x00000000c08039d1       0x56 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
-                0x00000000c08039d1                div
-                0x00000000c08039f2                mod
-                0x00000000c0803a09                max
-                0x00000000c0803a18                min
- .text          0x00000000c0803a27      0x3b5 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
-                0x00000000c0803a27                standard_Compare
-                0x00000000c0803a3a                ordered_Array_Create
-                0x00000000c0803a7a                ordered_Array_Insert
-                0x00000000c0803b3d                ordered_Array_Remove
-                0x00000000c0803bf7                ordered_Array_Search
-                0x00000000c0803c50                ordered_Array_Get
-                0x00000000c0803c76                ordered_Array_Remove_Index
-                0x00000000c0803cdf                ordered_Array_Test
+                0x00000000c080163b                kmalloc
+                0x00000000c080166e                kfree
+                0x00000000c0801693                kheap_Test
+ .text          0x00000000c0801756      0x515 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+                0x00000000c0801973                map_Page
+                0x00000000c0801b47                enable_Paging
+                0x00000000c0801b63                reload_Page_Directory
+                0x00000000c0801b71                page_Table_Init
+                0x00000000c0801c26                page_Table_Test
+ .text          0x00000000c0801c6b      0x756 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+                0x00000000c0801da4                monitor_Init
+                0x00000000c0801daa                monitor_Move_Cursor
+                0x00000000c0801e69                monitor_Clear
+                0x00000000c0801ee9                monitor_Put_Char_With_Color
+                0x00000000c0801ff6                monitor_Put_String_With_Color
+                0x00000000c080202e                monitor_Put_Hex_With_Color
+                0x00000000c0802113                monitor_Put_Dec_With_Color
+                0x00000000c080222e                monitor_Print
+                0x00000000c0802248                monitor_Print_Line
+                0x00000000c0802275                monitor_Print_With_Color
+                0x00000000c0802294                monitor_Printf
+                0x00000000c08022bf                monitor_Printf_Args
+ *fill*         0x00000000c08023c1        0xf 
+ .text          0x00000000c08023d0        0xb Objs/kernel/kernel/Debug/kernel/driver/sync/Cas.S.o
+                0x00000000c08023d0                atomic_Exchange
+ .text          0x00000000c08023db       0xc9 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+                0x00000000c08023db                cond_Var_Init
+                0x00000000c08023f3                cond_Var_Wait
+                0x00000000c0802469                cond_Var_Notify
+ .text          0x00000000c08024a4       0x7d Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+                0x00000000c08024a4                spinlock_Init
+                0x00000000c08024bd                spinlock_Lock
+                0x00000000c08024cb                spinlock_Lock_Irq_Save
+                0x00000000c08024f6                spinlock_Unlock
+                0x00000000c0802504                spinlock_Unlock_Irq_Restore
+ .text          0x00000000c0802521       0x61 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+                0x00000000c0802521                yieldlock_Init
+                0x00000000c0802530                yieldlock_Lock
+                0x00000000c0802555                yieldlock_TryLock
+                0x00000000c0802573                yieldlock_Unlock
+ .text          0x00000000c0802582        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ *fill*         0x00000000c0802582        0xe 
+ .text          0x00000000c0802590       0x1e Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.S.o
+                0x00000000c0802590                cpu_Idle
+                0x00000000c0802592                context_Switch
+                0x00000000c08025a5                resume_Thread
+ .text          0x00000000c08025ae      0x46f Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+                0x00000000c08027b5                get_Current_Thread_Node
+                0x00000000c08027bf                get_Current_Thread
+                0x00000000c08027db                add_Dead_Thread
+                0x00000000c0802801                schedule_Thread_Exit
+                0x00000000c080282f                add_Thread_To_Schedule
+                0x00000000c0802860                add_Thread_Node_To_Schedule
+                0x00000000c08028a3                add_Thread_To_Schedule_Head
+                0x00000000c08028db                schedule_Thread_Yield
+                0x00000000c0802914                schedule_Mark_Thread_Block
+                0x00000000c080292f                schedule_Init
+                0x00000000c08029aa                disable_Preempt
+                0x00000000c08029be                enable_Preempt
+                0x00000000c08029d2                schedule
+ .text          0x00000000c0802a1d      0x240 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+                0x00000000c0802a30                thread_Init
+                0x00000000c0802c01                thread_Test
+                0x00000000c0802c34                destroy_Thread
+ .text          0x00000000c0802c5d       0xa8 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+                0x00000000c0802c98                timer_Init
+ .text          0x00000000c0802d05       0x6e Objs/kernel/kernel/Debug/kernel/main.c.o
+                0x00000000c0802d4f                main
+ .text          0x00000000c0802d73      0x398 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+                0x00000000c0802d73                bitmap_Create
+                0x00000000c0802db0                bitmap_Init
+                0x00000000c0802e35                bitmap_Set_Bit
+                0x00000000c0802e85                bitmap_Clear_Bit
+                0x00000000c0802ed7                bitmap_Get_Bit
+                0x00000000c0802f1a                bitmap_Find_First_Free_Bit
+                0x00000000c0802f9c                bitmap_Clear
+                0x00000000c0802fd0                bitmap_Allocate_First_Free_Bit
+                0x00000000c0803004                bitmap_Expand
+                0x00000000c08030e6                bitmap_Destroy
+ .text          0x00000000c080310b       0x35 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+                0x00000000c080310b                oh_Panic
+ .text          0x00000000c0803140        0x0 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .text          0x00000000c0803140      0x8b1 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+                0x00000000c0803140                doubly_Linked_List_Init
+                0x00000000c0803163                create_Doubly_Linked_List
+                0x00000000c0803190                doubly_Linked_List_Move
+                0x00000000c08031c3                doubly_Lost_Concatenate
+                0x00000000c0803236                doubly_Linked_List_Append
+                0x00000000c08032bd                doubly_Linked_List_Insert
+                0x00000000c0803389                doubly_Linked_List_Insert_Head
+                0x00000000c08033a5                doubly_Linked_List_Remove
+                0x00000000c0803438                doubly_Linked_List_Append_Data
+                0x00000000c080346c                doubly_Linked_List_Remove_Data
+                0x00000000c08034ab                doubly_Linked_Test
+ .text          0x00000000c08039f1       0x56 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+                0x00000000c08039f1                div
+                0x00000000c0803a12                mod
+                0x00000000c0803a29                max
+                0x00000000c0803a38                min
+ .text          0x00000000c0803a47      0x3b5 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+                0x00000000c0803a47                standard_Compare
+                0x00000000c0803a5a                ordered_Array_Create
+                0x00000000c0803a9a                ordered_Array_Insert
+                0x00000000c0803b5d                ordered_Array_Remove
+                0x00000000c0803c17                ordered_Array_Search
+                0x00000000c0803c70                ordered_Array_Get
+                0x00000000c0803c96                ordered_Array_Remove_Index
+                0x00000000c0803cff                ordered_Array_Test
 
-.iplt           0x00000000c0803de0        0x0
- .iplt          0x00000000c0803de0        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
+.iplt           0x00000000c0803e00        0x0
+ .iplt          0x00000000c0803e00        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
 
-.eh_frame       0x00000000c0803ddc     0x10f0
- .eh_frame      0x00000000c0803ddc       0x78 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
- .eh_frame      0x00000000c0803e54      0x104 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
+.eh_frame       0x00000000c0803dfc     0x10f0
+ .eh_frame      0x00000000c0803dfc       0x78 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
+ .eh_frame      0x00000000c0803e74      0x104 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
                                         0x11c (松开之前的大小)
- .eh_frame      0x00000000c0803f58      0x100 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
+ .eh_frame      0x00000000c0803f78      0x100 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
                                         0x118 (松开之前的大小)
- .eh_frame      0x00000000c0804058       0xa0 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
+ .eh_frame      0x00000000c0804078       0xa0 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
                                          0xb8 (松开之前的大小)
- .eh_frame      0x00000000c08040f8      0x180 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .eh_frame      0x00000000c0804118      0x180 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
                                         0x198 (松开之前的大小)
- .eh_frame      0x00000000c0804278      0x15c Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .eh_frame      0x00000000c0804298      0x15c Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
                                         0x174 (松开之前的大小)
- .eh_frame      0x00000000c08043d4      0x1c4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .eh_frame      0x00000000c08043f4      0x1c4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
                                         0x1dc (松开之前的大小)
- .eh_frame      0x00000000c0804598       0x60 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .eh_frame      0x00000000c08045b8       0x60 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
                                          0x78 (松开之前的大小)
- .eh_frame      0x00000000c08045f8       0xa0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .eh_frame      0x00000000c0804618       0xa0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
                                          0xb8 (松开之前的大小)
- .eh_frame      0x00000000c0804698       0x80 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .eh_frame      0x00000000c08046b8       0x80 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
                                          0x98 (松开之前的大小)
- .eh_frame      0x00000000c0804718      0x238 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .eh_frame      0x00000000c0804738      0x238 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
                                         0x250 (松开之前的大小)
- .eh_frame      0x00000000c0804950       0x9c Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .eh_frame      0x00000000c0804970       0x9c Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
                                          0xb4 (松开之前的大小)
- .eh_frame      0x00000000c08049ec       0x40 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .eh_frame      0x00000000c0804a0c       0x40 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
                                          0x58 (松开之前的大小)
- .eh_frame      0x00000000c0804a2c       0x4c Objs/kernel/kernel/Debug/kernel/main.c.o
+ .eh_frame      0x00000000c0804a4c       0x4c Objs/kernel/kernel/Debug/kernel/main.c.o
                                          0x64 (松开之前的大小)
- .eh_frame      0x00000000c0804a78      0x154 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .eh_frame      0x00000000c0804a98      0x154 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
                                         0x16c (松开之前的大小)
- .eh_frame      0x00000000c0804bcc       0x1c Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .eh_frame      0x00000000c0804bec       0x1c Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
                                          0x34 (松开之前的大小)
- .eh_frame      0x00000000c0804be8      0x160 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .eh_frame      0x00000000c0804c08      0x160 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
                                         0x178 (松开之前的大小)
- .eh_frame      0x00000000c0804d48       0x80 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .eh_frame      0x00000000c0804d68       0x80 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
                                          0x98 (松开之前的大小)
- .eh_frame      0x00000000c0804dc8      0x104 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .eh_frame      0x00000000c0804de8      0x104 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
                                         0x11c (松开之前的大小)
 
-.rel.dyn        0x00000000c0804ecc        0x0
- .rel.iplt      0x00000000c0804ecc        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
- .rel.text      0x00000000c0804ecc        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
+.rel.dyn        0x00000000c0804eec        0x0
+ .rel.iplt      0x00000000c0804eec        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
+ .rel.text      0x00000000c0804eec        0x0 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
 
 .data           0x00000000c0805000      0x2bc
                 0x00000000c0805000                data = .
@@ -630,30 +636,30 @@ LOAD Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
                 0x00000000c0806000                inIrqFLag
  .bss           0x00000000c0806c20       0xc8 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
  *fill*         0x00000000c0806ce8       0x18 
- .bss           0x00000000c0806d00       0x20 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .bss           0x00000000c0806d20      0x425 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
-                0x00000000c0806d20                currentPageDirectory
- *fill*         0x00000000c0807145        0x1 
- .bss           0x00000000c0807146        0x4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
-                0x00000000c0807146                cursorX
-                0x00000000c0807148                cursorY
- .bss           0x00000000c080714a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .bss           0x00000000c080714a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .bss           0x00000000c080714a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
- .bss           0x00000000c080714a        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- *fill*         0x00000000c080714a        0x2 
- .bss           0x00000000c080714c       0x3c Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
- .bss           0x00000000c0807188        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
- .bss           0x00000000c0807188        0x4 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/main.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
- .bss           0x00000000c080718c        0x0 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .bss           0x00000000c0806d00       0x40 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .bss           0x00000000c0806d40      0x425 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+                0x00000000c0806d40                currentPageDirectory
+ *fill*         0x00000000c0807165        0x1 
+ .bss           0x00000000c0807166        0x4 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+                0x00000000c0807166                cursorX
+                0x00000000c0807168                cursorY
+ .bss           0x00000000c080716a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .bss           0x00000000c080716a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .bss           0x00000000c080716a        0x0 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .bss           0x00000000c080716a        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ *fill*         0x00000000c080716a        0x2 
+ .bss           0x00000000c080716c       0x3c Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .bss           0x00000000c08071a8        0x0 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .bss           0x00000000c08071a8        0x4 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .bss           0x00000000c08071ac        0x0 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
                 0x00000000c0808000                . = ALIGN (0x1000)
- *fill*         0x00000000c080718c      0xe74 
+ *fill*         0x00000000c08071ac      0xe54 
  COMMON         0x00000000c0808000        0x6 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
                 0x00000000c0808000                idtPtr
                 0x00000000c0808006                end = .
@@ -675,53 +681,53 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
 .stabstr        0x0000000000000000       0xa5
  .stabstr       0x0000000000000000       0xa5 Objs/kernel/kernel/Debug/kernel/driver/common/Get_Register.S.o
 
-.debug_info     0x0000000000000000     0x3db0
+.debug_info     0x0000000000000000     0x3ded
  .debug_info    0x0000000000000000      0x11a Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_info    0x000000000000011a       0x21 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
  .debug_info    0x000000000000013b      0x3e1 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
  .debug_info    0x000000000000051c      0x387 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_info    0x00000000000008a3      0x3b1 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_info    0x0000000000000c54      0x718 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_info    0x000000000000136c      0x6c0 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
- .debug_info    0x0000000000001a2c      0x4b6 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_info    0x0000000000001ee2      0x24a Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_info    0x000000000000212c      0x16d Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .debug_info    0x0000000000002299      0x149 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
- .debug_info    0x00000000000023e2       0x21 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- .debug_info    0x0000000000002403      0x5a6 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
- .debug_info    0x00000000000029a9      0x36e Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
- .debug_info    0x0000000000002d17      0x2e8 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
- .debug_info    0x0000000000002fff       0xa6 Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_info    0x00000000000030a5      0x3ec Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
- .debug_info    0x0000000000003491       0xad Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .debug_info    0x000000000000353e       0x21 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .debug_info    0x000000000000355f      0x3a4 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
- .debug_info    0x0000000000003903      0x13c Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
- .debug_info    0x0000000000003a3f      0x371 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_info    0x0000000000000c54      0x755 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_info    0x00000000000013a9      0x6c0 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .debug_info    0x0000000000001a69      0x4b6 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_info    0x0000000000001f1f      0x24a Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_info    0x0000000000002169      0x16d Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_info    0x00000000000022d6      0x149 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .debug_info    0x000000000000241f       0x21 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ .debug_info    0x0000000000002440      0x5a6 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .debug_info    0x00000000000029e6      0x36e Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .debug_info    0x0000000000002d54      0x2e8 Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .debug_info    0x000000000000303c       0xa6 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_info    0x00000000000030e2      0x3ec Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .debug_info    0x00000000000034ce       0xad Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_info    0x000000000000357b       0x21 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .debug_info    0x000000000000359c      0x3a4 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .debug_info    0x0000000000003940      0x13c Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_info    0x0000000000003a7c      0x371 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
-.debug_abbrev   0x0000000000000000     0x14bc
+.debug_abbrev   0x0000000000000000     0x14c3
  .debug_abbrev  0x0000000000000000       0x6c Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_abbrev  0x000000000000006c       0x13 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
  .debug_abbrev  0x000000000000007f      0x127 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
  .debug_abbrev  0x00000000000001a6      0x189 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_abbrev  0x000000000000032f      0x11a Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_abbrev  0x0000000000000449      0x191 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_abbrev  0x00000000000005da      0x1b8 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
- .debug_abbrev  0x0000000000000792      0x197 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_abbrev  0x0000000000000929       0xd6 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_abbrev  0x00000000000009ff       0xd2 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .debug_abbrev  0x0000000000000ad1       0xdf Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
- .debug_abbrev  0x0000000000000bb0       0x13 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- .debug_abbrev  0x0000000000000bc3      0x1ae Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
- .debug_abbrev  0x0000000000000d71      0x16a Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
- .debug_abbrev  0x0000000000000edb       0xfb Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
- .debug_abbrev  0x0000000000000fd6       0x75 Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_abbrev  0x000000000000104b      0x135 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
- .debug_abbrev  0x0000000000001180       0x66 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .debug_abbrev  0x00000000000011e6       0x13 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .debug_abbrev  0x00000000000011f9      0x123 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
- .debug_abbrev  0x000000000000131c       0x7f Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
- .debug_abbrev  0x000000000000139b      0x121 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_abbrev  0x0000000000000449      0x198 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_abbrev  0x00000000000005e1      0x1b8 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .debug_abbrev  0x0000000000000799      0x197 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_abbrev  0x0000000000000930       0xd6 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_abbrev  0x0000000000000a06       0xd2 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_abbrev  0x0000000000000ad8       0xdf Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .debug_abbrev  0x0000000000000bb7       0x13 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ .debug_abbrev  0x0000000000000bca      0x1ae Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .debug_abbrev  0x0000000000000d78      0x16a Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .debug_abbrev  0x0000000000000ee2       0xfb Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .debug_abbrev  0x0000000000000fdd       0x75 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_abbrev  0x0000000000001052      0x135 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .debug_abbrev  0x0000000000001187       0x66 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_abbrev  0x00000000000011ed       0x13 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .debug_abbrev  0x0000000000001200      0x123 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .debug_abbrev  0x0000000000001323       0x7f Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_abbrev  0x00000000000013a2      0x121 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
 .debug_aranges  0x0000000000000000      0x2a8
  .debug_aranges
@@ -769,7 +775,7 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
  .debug_aranges
                 0x0000000000000288       0x20 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
-.debug_macro    0x0000000000000000     0x148c
+.debug_macro    0x0000000000000000     0x14cf
  .debug_macro   0x0000000000000000       0x24 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_macro   0x0000000000000024      0x586 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_macro   0x00000000000005aa       0x22 Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
@@ -781,60 +787,60 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
  .debug_macro   0x000000000000076e       0x8e Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_macro   0x00000000000007fc       0x37 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
  .debug_macro   0x0000000000000833       0x9a Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_macro   0x00000000000008cd       0x9d Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_macro   0x000000000000096a       0x16 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_macro   0x0000000000000980       0x10 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_macro   0x0000000000000990       0x4c Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_macro   0x00000000000009dc       0x4c Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_macro   0x0000000000000a28       0x9d Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
- .debug_macro   0x0000000000000ac5       0x41 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_macro   0x0000000000000b06       0xf0 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_macro   0x0000000000000bf6       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_macro   0x0000000000000c0c       0x10 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_macro   0x0000000000000c1c       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_macro   0x0000000000000c32       0xe0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .debug_macro   0x0000000000000d12       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .debug_macro   0x0000000000000d28       0xe0 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
- .debug_macro   0x0000000000000e08       0x11 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- .debug_macro   0x0000000000000e19       0xf4 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
- .debug_macro   0x0000000000000f0d       0xc9 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
- .debug_macro   0x0000000000000fd6       0xdd Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
- .debug_macro   0x00000000000010b3       0xe1 Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_macro   0x0000000000001194       0x94 Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_macro   0x0000000000001228       0x9d Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
- .debug_macro   0x00000000000012c5       0x72 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .debug_macro   0x0000000000001337       0x10 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .debug_macro   0x0000000000001347       0x11 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .debug_macro   0x0000000000001358       0xb0 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
- .debug_macro   0x0000000000001408       0x24 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
- .debug_macro   0x000000000000142c       0x50 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
- .debug_macro   0x000000000000147c       0x10 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_macro   0x00000000000008cd       0xe0 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x00000000000009ad       0x16 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x00000000000009c3       0x10 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x00000000000009d3       0x4c Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x0000000000000a1f       0x4c Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x0000000000000a6b       0x16 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x0000000000000a81       0x10 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x0000000000000a91       0x16 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_macro   0x0000000000000aa7       0x9d Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .debug_macro   0x0000000000000b44       0x41 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_macro   0x0000000000000b85       0xf0 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_macro   0x0000000000000c75       0xe0 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_macro   0x0000000000000d55       0x16 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_macro   0x0000000000000d6b       0xe0 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .debug_macro   0x0000000000000e4b       0x11 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ .debug_macro   0x0000000000000e5c       0xf4 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .debug_macro   0x0000000000000f50       0xc9 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .debug_macro   0x0000000000001019       0xdd Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .debug_macro   0x00000000000010f6       0xe1 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_macro   0x00000000000011d7       0x94 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_macro   0x000000000000126b       0x9d Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .debug_macro   0x0000000000001308       0x72 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_macro   0x000000000000137a       0x10 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_macro   0x000000000000138a       0x11 Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .debug_macro   0x000000000000139b       0xb0 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .debug_macro   0x000000000000144b       0x24 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_macro   0x000000000000146f       0x50 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_macro   0x00000000000014bf       0x10 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
-.debug_line     0x0000000000000000     0x1fed
+.debug_line     0x0000000000000000     0x2062
  .debug_line    0x0000000000000000       0x6c Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
  .debug_line    0x000000000000006c       0x40 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
  .debug_line    0x00000000000000ac      0x120 Objs/kernel/kernel/Debug/kernel/driver/common/Stdlib.c.o
  .debug_line    0x00000000000001cc      0x1b6 Objs/kernel/kernel/Debug/kernel/driver/interrupt/Interrupt.c.o
  .debug_line    0x0000000000000382       0xc7 Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
- .debug_line    0x0000000000000449      0x226 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
- .debug_line    0x000000000000066f      0x22b Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
- .debug_line    0x000000000000089a      0x1dc Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
- .debug_line    0x0000000000000a76      0x1dd Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
- .debug_line    0x0000000000000c53      0x1c3 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
- .debug_line    0x0000000000000e16      0x1ba Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
- .debug_line    0x0000000000000fd0       0x40 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
- .debug_line    0x0000000000001010      0x264 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
- .debug_line    0x0000000000001274      0x1d8 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
- .debug_line    0x000000000000144c      0x1ba Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
- .debug_line    0x0000000000001606      0x1bf Objs/kernel/kernel/Debug/kernel/main.c.o
- .debug_line    0x00000000000017c5      0x1f5 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
- .debug_line    0x00000000000019ba      0x112 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
- .debug_line    0x0000000000001acc       0x3d Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
- .debug_line    0x0000000000001b09      0x2fa Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
- .debug_line    0x0000000000001e03       0x87 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
- .debug_line    0x0000000000001e8a      0x163 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_line    0x0000000000000449      0x29b Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+ .debug_line    0x00000000000006e4      0x22b Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .debug_line    0x000000000000090f      0x1dc Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_line    0x0000000000000aeb      0x1dd Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_line    0x0000000000000cc8      0x1c3 Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_line    0x0000000000000e8b      0x1ba Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .debug_line    0x0000000000001045       0x40 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ .debug_line    0x0000000000001085      0x264 Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .debug_line    0x00000000000012e9      0x1d8 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .debug_line    0x00000000000014c1      0x1ba Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .debug_line    0x000000000000167b      0x1bf Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_line    0x000000000000183a      0x1f5 Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .debug_line    0x0000000000001a2f      0x112 Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_line    0x0000000000001b41       0x3d Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .debug_line    0x0000000000001b7e      0x2fa Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .debug_line    0x0000000000001e78       0x87 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_line    0x0000000000001eff      0x163 Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
 
-.debug_str      0x0000000000000000     0x38c7
+.debug_str      0x0000000000000000     0x38d1
  .debug_str     0x0000000000000000     0x196c Objs/kernel/kernel/Debug/kernel/driver/common/Io.c.o
                                        0x19e4 (松开之前的大小)
  .debug_str     0x000000000000196c       0x20 Objs/kernel/kernel/Debug/kernel/driver/common/Stdio.c.o
@@ -845,39 +851,39 @@ OUTPUT(../Bin/kernel/kernel/Debug/kernel.elf elf32-i386)
                                        0x20eb (松开之前的大小)
  .debug_str     0x000000000000216e      0x10a Objs/kernel/kernel/Debug/kernel/driver/memory/Gdt.c.o
                                        0x1d3e (松开之前的大小)
- .debug_str     0x0000000000002278      0x5dd Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
-                                       0x256d (松开之前的大小)
- .debug_str     0x0000000000002855      0x2a7 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
+ .debug_str     0x0000000000002278      0x6f3 Objs/kernel/kernel/Debug/kernel/driver/memory/Kheap.c.o
+                                       0x2691 (松开之前的大小)
+ .debug_str     0x000000000000296b      0x2a7 Objs/kernel/kernel/Debug/kernel/driver/memory/Page_Table.c.o
                                        0x25a7 (松开之前的大小)
- .debug_str     0x0000000000002afc      0x1e8 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
+ .debug_str     0x0000000000002c12      0x1e8 Objs/kernel/kernel/Debug/kernel/driver/monitor/Monitor.c.o
                                        0x1ce9 (松开之前的大小)
- .debug_str     0x0000000000002ce4      0x23c Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
+ .debug_str     0x0000000000002dfa      0x130 Objs/kernel/kernel/Debug/kernel/driver/sync/Cond_Var.c.o
                                        0x2502 (松开之前的大小)
- .debug_str     0x0000000000002f20       0xae Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
+ .debug_str     0x0000000000002f2a       0xae Objs/kernel/kernel/Debug/kernel/driver/sync/Spinlock.c.o
                                        0x244f (松开之前的大小)
- .debug_str     0x0000000000002fce       0x63 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
+ .debug_str     0x0000000000002fd8       0x63 Objs/kernel/kernel/Debug/kernel/driver/sync/Yieldlock.c.o
                                        0x242b (松开之前的大小)
- .debug_str     0x0000000000003031       0x20 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
+ .debug_str     0x000000000000303b       0x20 Objs/kernel/kernel/Debug/kernel/driver/task/Process.c.o
                                        0x1910 (松开之前的大小)
- .debug_str     0x0000000000003051      0x37c Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
+ .debug_str     0x000000000000305b      0x37c Objs/kernel/kernel/Debug/kernel/driver/task/Scheduler.c.o
                                        0x2827 (松开之前的大小)
- .debug_str     0x00000000000033cd       0xb8 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
+ .debug_str     0x00000000000033d7       0xb8 Objs/kernel/kernel/Debug/kernel/driver/task/Thread.c.o
                                        0x2535 (松开之前的大小)
- .debug_str     0x0000000000003485       0x6b Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
+ .debug_str     0x000000000000348f       0x6b Objs/kernel/kernel/Debug/kernel/driver/timer/Timer.c.o
                                        0x252c (松开之前的大小)
- .debug_str     0x00000000000034f0       0x28 Objs/kernel/kernel/Debug/kernel/main.c.o
+ .debug_str     0x00000000000034fa       0x28 Objs/kernel/kernel/Debug/kernel/main.c.o
                                        0x23b6 (松开之前的大小)
- .debug_str     0x0000000000003518       0xfe Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
+ .debug_str     0x0000000000003522       0xfe Objs/kernel/kernel/Debug/kernel/utils/Bitmap.c.o
                                        0x23ed (松开之前的大小)
- .debug_str     0x0000000000003616       0x2b Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
+ .debug_str     0x0000000000003620       0x2b Objs/kernel/kernel/Debug/kernel/utils/Debug.c.o
                                        0x1ffa (松开之前的大小)
- .debug_str     0x0000000000003641       0x1d Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
+ .debug_str     0x000000000000364b       0x1d Objs/kernel/kernel/Debug/kernel/utils/Hash_Table.c.o
                                        0x190d (松开之前的大小)
- .debug_str     0x000000000000365e      0x178 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
+ .debug_str     0x0000000000003668      0x178 Objs/kernel/kernel/Debug/kernel/utils/Linked_List.c.o
                                        0x2528 (松开之前的大小)
- .debug_str     0x00000000000037d6       0x17 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
+ .debug_str     0x00000000000037e0       0x17 Objs/kernel/kernel/Debug/kernel/utils/Math.c.o
                                        0x19b4 (松开之前的大小)
- .debug_str     0x00000000000037ed       0xda Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
+ .debug_str     0x00000000000037f7       0xda Objs/kernel/kernel/Debug/kernel/utils/Ordered_Array.c.o
                                        0x1c52 (松开之前的大小)
 
 .comment        0x0000000000000000       0x35

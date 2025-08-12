@@ -27,7 +27,9 @@
 * Contents         :
 ******************************************************************************/
 #include "Kheap.h"
+#include "Yieldlock.h"
 
+static yieldlock_t kheapLock;
 static kernel_heap_t kheap;
 
 static int32 kheap_Block_Compare(void *a, void *b)
@@ -366,6 +368,7 @@ static void free(void* heap, void* freedAddress)
 
 void kheap_Init(void)
 {
+    yieldlock_Init(&kheapLock);
     kheap = kernel_Heap_Create(KHEAP_START, KHEAP_START + KHEAP_MIN_SIZE, KHEAP_MAX);
 }
 
@@ -378,10 +381,14 @@ void* kmalloc(uint32 size, bool pageAligned)
     return alloc(&kheap, size, pageAligned);
 }
 
-void* kfree(void* address)
+void kfree(void* address)
 {
+    if (address == nullptr)
+    {
+        return;
+    }
     free(&kheap, address);
-    return nullptr;
+    return;
 }
 
 void kheap_Test(void)
