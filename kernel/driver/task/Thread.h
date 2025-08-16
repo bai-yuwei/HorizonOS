@@ -40,6 +40,12 @@
 
 #define KERNEL_STACK_SIZE  8192
 
+#define EFLAGS_MBS    (1 << 1)
+#define EFLAGS_IF_0   (0 << 9)
+#define EFLAGS_IF_1   (1 << 9)
+#define EFLAGS_IOPL_0 (0 << 12)
+#define EFLAGS_IOPL_3 (3 << 12)
+
 typedef void threadFunc();
 
 typedef isr_params_t interrupt_stack_t;
