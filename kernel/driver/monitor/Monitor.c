@@ -28,6 +28,7 @@
 ******************************************************************************/
 
 #include "Monitor.h"
+#include "Yieldlock.h"
 
 extern void* get_Ebp();
 
@@ -38,6 +39,8 @@ int16 cursorY = 0;
 
 const uint8 backColor = COLOR_BLACK;
 const uint8 foreColor = COLOR_WHITE;
+
+static yieldlock_t monitorLock;
 
 static void monitor_Set_Cursor(void)
 {
@@ -85,10 +88,13 @@ static void monitor_Scroll(void)
 }
 
 void monitor_Init(void)
-{}
+{
+    yieldlock_Init(&monitorLock);
+}
 
 void monitor_Move_Cursor(uint16 deltaX, uint16 deltaY)
 {
+    yieldlock_Lock(&monitorLock);
     cursorX += deltaX;
     int32 offsetY = div(cursorX, 80);
     cursorX = mod(cursorX, 80);
@@ -104,10 +110,12 @@ void monitor_Move_Cursor(uint16 deltaX, uint16 deltaY)
         cursorY = 24;
     }
     monitor_Set_Cursor();
+    yieldlock_Unlock(&monitorLock);
 }
 
 void monitor_Clear(void)
 {
+    yieldlock_Lock(&monitorLock);
     const uint8 attributeByte = (backColor << 4) | (foreColor & 0x0F);
     const uint16 blank = 0x20 | (backColor << 4) | (attributeByte << 8);
     int i;
@@ -118,6 +126,7 @@ void monitor_Clear(void)
     cursorX = 0;
     cursorY = 0;
     monitor_Set_Cursor();
+    yieldlock_Unlock(&monitorLock);
 }
 
 /**
@@ -292,19 +301,25 @@ void monitor_Put_Dec_With_Color(int32 n, uint8 color)
 
 void monitor_Print(char* str)
 {
+    yieldlock_Lock(&monitorLock);
     monitor_Put_String_With_Color(str, foreColor);
+    yieldlock_Unlock(&monitorLock);
 }
 
 
 void monitor_Print_Line(char* str)
 {
+    yieldlock_Lock(&monitorLock);
     monitor_Put_String_With_Color(str, foreColor);
     monitor_Put_Char_With_Color('\n', foreColor);
+    yieldlock_Unlock(&monitorLock);
 }
 
 void monitor_Print_With_Color(char* str, uint8 color)
 {
+    yieldlock_Lock(&monitorLock);
     monitor_Put_String_With_Color(str, color);
+    yieldlock_Unlock(&monitorLock);
 }
 
 void monitor_Printf(char* str, ...)
@@ -325,6 +340,7 @@ void monitor_Printf(char* str, ...)
  */
 void monitor_Printf_Args(char* str, void* argPtr)
 {
+    yieldlock_Lock(&monitorLock);
     // 用于遍历格式化字符串的索引
     int i = 0;
     // 无限循环，直到遇到字符串结束符
@@ -391,4 +407,5 @@ void monitor_Printf_Args(char* str, void* argPtr)
         // 索引加 1，移动到下一个字符
         i++;
     }
+    yieldlock_Unlock(&monitorLock);
 }
