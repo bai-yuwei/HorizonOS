@@ -1,54 +1,45 @@
-// /******************************************************************************
-// * @file    Hash_Table.h
-// * @brief   哈希表相关的头文件.
-// * @details This is the detail description.
-// * @author  ywBai <yw_bai@outlook.com>
-// * @date    2025年05月24日 (created)
-// * @version 0.0.1
-// * @par Copyright (C):
-// *          Bai, yuwei. All Rights Reserved.
-// * @par Encoding:
-// *          UTF-8
-// * @par Description        :
-// * 1. Hardware Descriptions:
-// *      None.
-// * 2. Program Architecture:
-// *      None.
-// * 3. File Usage:
-// *      None.
-// * 4. Limitations:
-// *      None.
-// * 5. Else:
-// *      None.
-// * @par Modification:
-// * Date          : 2025年05月24日;
-// * Revision         : 0.0.1;
-// * Author           : ywBai;
-// * Contents         :
-// ******************************************************************************/
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
 
-// #ifndef HASH_TABLE_H
-// #define HASH_TABLE_H
+#include "Linked_List.h"
+#include "Kheap.h"
 
-// #include "Linked_List.h"
-// #include "Kheap.h"
+#define INITIAL_BUCKETS_NUM 16
+#define LOAD_FACTOR 0.75
 
-// #define INITIAL_BUCKETS_NUM 16
-// #define LOAD_FACTOR 0.75
+struct hash_table_pair
+{
+    uint32 key;
+    void *value;
+};
+typedef struct hash_table_pair hash_table_pair_t;
 
-// struct hash_table_pair
-// {
-//     void *key;
-//     void *value;
-// };
-// typedef struct hash_table_pair hash_table_pair_t;
+struct hash_table
+{
+    doubly_linked_list_t *buckets;
+    int32 size;
+    int32 bucketsNum;
+};
+typedef struct hash_table hash_table_t;
 
-// struct hash_table
-// {
-//     doubly_linked_list_t *buckets;
-//     int32 size;
-//     int32 bucketsNum;
-// };
-// typedef struct hash_table hash_table_t;
+struct hash_table_interator
+{
+    hash_table_t* map;
+    int32 bucketIndex;
+    doubly_linked_list_node_t* node;
+    int32 index;
+};
+typedef struct hash_table_interator hash_table_interator_t;
 
-// #endif // !HASH_TABLE_H
+
+hash_table_pair_t* hash_Table_Iterator_Next(hash_table_interator_t* iter);
+bool hash_Table_Iterator_Has_Next(hash_table_interator_t* iter);
+hash_table_interator_t hash_Table_Iterator_Init(hash_table_t* map);
+void* hash_Table_Remove(hash_table_t* this, uint32 key);
+void hash_Table_Insert(hash_table_t* this, uint32 key, void* value);
+void* hash_Table_Get(hash_table_t* this, uint32 key);
+void hash_Table_Init(hash_table_t *table);
+void hash_Table_Destroy(hash_table_t* this);
+
+
+#endif // !HASH_TABLE_H

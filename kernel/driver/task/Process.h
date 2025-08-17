@@ -1,34 +1,13 @@
-/******************************************************************************
-* @file    Process.h
-* @brief   进程相关的头文件.
-* @details This is the detail description.
-* @author  ywBai <yw_bai@outlook.com>
-* @date    2025年06月01日 (created)
-* @version 0.0.1
-* @par Copyright (C):
-*          Bai, yuwei. All Rights Reserved.
-* @par Encoding:
-*          UTF-8
-* @par Description        :
-* 1. Hardware Descriptions:
-*      None.
-* 2. Program Architecture:
-*      None.
-* 3. File Usage:
-*      None.
-* 4. Limitations:
-*      None.
-* 5. Else:
-*      None.
-* @par Modification:
-* Date          : 2025年06月01日;
-* Revision         : 0.0.1;
-* Author           : ywBai;
-* Contents         :
-******************************************************************************/
 #ifndef PROCESS_H
 #define PROCESS_H
 #include "Std_Types.h"
+#include "Thread.h"
+#include "Page_Table.h"
+#include "Yieldlock.h"
+
+#define USER_STACK_TOP 0xBFC00000
+#define USER_STACK_SIZE 65536
+#define USER_PROCESS_THREAD_MAX 4096
 
 enum process_status {
     PROCESS_NORMAL,

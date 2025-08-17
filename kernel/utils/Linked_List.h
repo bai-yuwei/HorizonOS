@@ -56,7 +56,6 @@ void doubly_Linked_List_Append(doubly_linked_list_t *list, doubly_linked_list_no
 void doubly_Linked_List_Insert(doubly_linked_list_t *list, doubly_linked_list_node_t *node, doubly_linked_list_node_t *prevNode);
 void doubly_Linked_List_Insert_Head(doubly_linked_list_t *list, doubly_linked_list_node_t *node);
 void doubly_Linked_List_Remove(doubly_linked_list_t *list, doubly_linked_list_node_t *node);
-void doubly_List_Append_Data(doubly_linked_list_t *list, void *dataPtr);
 void doubly_Linked_List_Remove_Data(doubly_linked_list_t *list, void *dataPtr);
 void doubly_Linked_List_Append_Data(doubly_linked_list_t *list, void *dataPtr);
 void doubly_Linked_Test();
